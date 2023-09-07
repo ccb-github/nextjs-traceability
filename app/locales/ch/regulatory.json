@@ -1,0 +1,9 @@
+{
+  "_id": "ID",
+  "name": "名字",
+  "address": "地址",
+  "sideBar": {
+    "product": "产品",
+    "Quality Check": "质检"
+  }
+}

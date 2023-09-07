@@ -1,0 +1,45 @@
+{
+  "Enterprise": "企业",
+  "address": "地址",
+  "createdAt": "创建时间",
+  "name": "名字",
+  "registerPlace": "注册地",
+
+  "mainPanel": {
+    "Product": "产品",
+    "Account": "帐号管理",
+    "Stock manage": "仓库管理",
+    "Manage Stock": "仓库管理",
+    "Description for product": "进入产品页面",
+    "Add new category": "增加新商品类型",
+    "Product info enter": "添加新产品",
+    "Order manage": "订单管理",
+    "Product manage": "产品管理",
+    "Category": "类型",
+    "Quick Entrance": "快捷入口",
+    "Enterprise": "企业",
+    "All the enterprise": "所有企业",
+    "Account management": "管理应用账户"
+  },
+
+  "sidebar": {
+    "Category": "分类",
+    "Category register": "$t(sidebar.Category) 注册",
+    "Account": "帐号",
+    "Product manage": "产品管理",
+    "Order": "订单",
+    "Admin function": "管理员功能",
+    "Product": "产品",
+    "Traceability info": "追溯信息",
+    "Stock manage": "仓库管理", 
+    "Organization manage": "机构管理",
+    "Account manage": "帐号管理",
+    "Checker": "检查员",
+    "Enterprise": "企业",
+    "Data manage": "追溯数据管理",
+    "Regulatory": "监管机构",
+    "Regulatory manage": "$t(Regulatory)管理",
+    "Process manage": "过程管理",
+    "Admin": "管理员"
+  }
+}
