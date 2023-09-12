@@ -13,7 +13,7 @@ export const adminSideBarItems: NavItem[] = [
       },
       {
         name: "Traceability info",
-        description: 'No spec description',
+        description: "No spec description",
         items: [
           {
             name: "Product",
@@ -29,8 +29,8 @@ export const adminSideBarItems: NavItem[] = [
         ],
       },
       {
-        name: "Enterprise manage",
-        description: 'No spec description provide',
+        name: "Organization manage",
+        description: "No spec description provide",
         items: [
           {
             name: "Stock",
@@ -44,17 +44,17 @@ export const adminSideBarItems: NavItem[] = [
           },
         ],
       },
-      {
-        name: "Other",
-        description: "No spec description provide",
-        items: [
-          {
-            name: "Process manage",
-            link: "/admin/process",
-            description: "All the process",
-          },
-        ],
-      },
+      // {
+      //   name: "Other",
+      //   description: "No spec description provide",
+      //   items: [
+      //     {
+      //       name: "Process manage",
+      //       link: "/admin/process",
+      //       description: "All the process",
+      //     },
+      //   ],
+      // },
     ],
   },
 ]
@@ -65,23 +65,32 @@ export const regulatorySideBarItems: NavItem[] = [
     description: "Root item of regulatory sidebar",
     items: [
       {
-        name: "Account Manage",
-        link: "/regulatory/account",
-        description: "Manage user account for the app",
+        name: "Account",
+        description: "Manage user account(regulatory)",
+        items: [
+          {
+            name: "Account info",
+            link: "/regulatory/account",
+            description: "Account info",
+          },
+          {
+            name: "Organization info",
+            link: "#",
+            description: "Organization info",
+          },
+        ],
       },
       {
         name: "Data manage",
         description: "Default description",
         items: [
           {
-            name: "Quality Check",
+            name: "质检",
             link: "/regulatory/check-record",
             description: "Manage product",
-          }
+          },
         ],
-        
       },
-    
     ],
   },
 ]

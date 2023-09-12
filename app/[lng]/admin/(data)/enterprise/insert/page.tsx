@@ -1,25 +1,23 @@
-import AddDataForm, { AddProductForm } from "#/components/form/AddDataForm";
-import { schemaJson } from "#/lib/schema";
-import { toSchemaTypestring } from "#/lib/stringFactory";
-import { BasePageProps } from "#/types/pageProp";
-
+import AddDataForm from "#/components/form/AddDataForm"
+import { normalSchemaJson } from "#/lib/schema"
+import { BasePageProps } from "#/types/pageProp"
 
 interface PagePropsWithTypeParams extends BasePageProps {
-  params :{
-		type: string; 
-		lng: string;
+  params: {
+    type: string
+    lng: string
   }
 }
-export default function Page( {params} : PagePropsWithTypeParams) {
-	const { type, lng } = params
-
-	// <AddDataForm schemaObj={schemaJson[toSchemaTypestring(type)]}/>
-	console.log(`Page Enterprise`)
-	return (
-	  <AddDataForm 
-	    lng={lng} 
-	    schemaObj={schemaJson["Enterprise"]} 
-		  schemaName={"Enterprise"}
-		/>
-	);
+export default function AdminInsertEnterprisePage({
+  params,
+}: PagePropsWithTypeParams) {
+  const { lng } = params
+  console.log("Page Enterprise")
+  return (
+    <AddDataForm
+      lng={lng}
+      schemaObj={normalSchemaJson["Enterprise"]}
+      schemaName={"Enterprise"}
+    />
+  )
 }
