@@ -14,6 +14,7 @@ import { useApp } from "#/hooks/useApp"
 import { useRouter } from "next/navigation"
 import { type GeneralDataTableWrapperProps } from "#/types/table"
 import productSchemaJson, { ProductSchema } from "#/lib/schema/def/product"
+import { roleUrlMap } from "#/lib/webcontents/user"
 
 type ProductReactTableProps = GeneralDataTableWrapperProps<
   Partial<Record<keyof ProductSchema, string>> & {
@@ -34,9 +35,9 @@ export default function ProductTable({ data, lng }: ProductReactTableProps) {
   const schemaPropertiesRef = useRef(productSchemaJson.properties)
   const realmApp = useApp()
   const router = useRouter()
-  const editLink = `/${lng}/${
-    realmApp.currentUser?.customData.role ?? "share"
-  }/edit/product`
+  const editLink = `/${lng}/${Object.keys(roleUrlMap).some((v) => v === realmApp.currentUser?.customData.role) ?
+      realmApp.currentUser?.customData.role : "share"
+    }/edit/product`
 
   return (
     <SchemaDataReactTable<
