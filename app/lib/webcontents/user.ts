@@ -3,5 +3,6 @@ export enum roleUrlMap {
   customer = "customer",
   checker = "checker",
   enterprise = "enterprise",
-  regulatory = "regulatory"
+  regulatory = "regulatory",
+
 }
