@@ -17,7 +17,7 @@ const QUERY_PRODUCTS = gql`
     }
   }
 `
-export async function queryProducts() {
+export async function  queryProducts() {
   try {
     const client = createClient(getCookieByName("accessToken")!)
     console.log(

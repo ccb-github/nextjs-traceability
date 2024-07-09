@@ -69,7 +69,7 @@ export interface NormalSchemaObject<SchemaPropKey extends string = "_id"> {
   properties: {
     [PropKey in SchemaPropKey]: SchemaProperty
   } & {
-    //_id is ma for a schema
+    //_id is required for a schema
     _id: SchemaProperty
   }
 }

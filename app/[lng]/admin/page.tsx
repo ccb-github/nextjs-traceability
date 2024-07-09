@@ -14,7 +14,7 @@ export default async function AdminHomePage({
 }) {
   const { lng } = params
   const { t } = await useTranslation(lng, "admin")
-
+  console.log(process.env)
   return (
     <>
       {adminMainPanels.map((section) => (

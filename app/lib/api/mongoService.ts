@@ -1,5 +1,6 @@
-import { SchemaName, SchemaObject } from "#/types/schema";
 import { normalSchemaJson } from "#/lib/schema";
+import { NormalSchemaName, NormalSchemaObject, SchemaName } from "#/lib/schema/format";
+
 if(process.env.NEXT_PUBLIC_MONGODB_ATLA_DATABASE === undefined) {
   console.log(process.env)
   throw Error("Missing env varaiable MONGODB_ATLA_DATABASE")
@@ -61,8 +62,8 @@ export async function getUser(realmUser: Realm.User, filter?: Realm.Services.Mon
 
 export async function insertDataToCol(
   user: Realm.User,
-  name: SchemaName,
-  insertDoc: Realm.Services.MongoDB.NewDocument< SchemaObject["properties"] >,
+  name: NormalSchemaName,
+  insertDoc: Realm.Services.MongoDB.NewDocument< NormalSchemaObject["properties"] >,
 ){
   typeof normalSchemaJson[name].properties 
   const insertCollection = user
