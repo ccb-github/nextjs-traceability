@@ -80,7 +80,7 @@ type ReactTableProps<
  * @param {ReactTableProps} props -- The react props
  * @returns {React.ReactNode}
  */
-export default function SchemaDataReactTable<DataItem extends { _id: string }>({
+export default function SchemaDataReactTable<DataItem extends { _id: unknown}>({
   data,
   schemaType,
   columnOptions,
