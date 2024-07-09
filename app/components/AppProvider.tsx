@@ -1,8 +1,7 @@
 'use client'
 import { useApp } from "#/hooks/useApp"
 import { useCollection } from "#/hooks/useCollection"
-import { SchemaName } from "#/types/schema"
-import React, { useEffect, useState } from "react"
+import React from "react"
 
 export const AppContext = React.createContext({
   useApp, 

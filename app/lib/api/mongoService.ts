@@ -1,4 +1,5 @@
-import { NormalSchemaName, SchemaName } from "../schema/format"
+import { normalSchemaMap } from "#/lib/schema"
+import { NormalSchemaName, NormalSchemaObject, SchemaName } from "#/lib/schema/format"
 
 if (process.env.NEXT_PUBLIC_MONGODB_ATLAS_DATABASE === undefined) {
   console.log(process.env)
@@ -63,8 +64,9 @@ export async function getUser(
 export async function insertDataToCol(
   user: Realm.User,
   name: NormalSchemaName,
-  insertDoc: Realm.Services.MongoDB.NewDocument<SchemaObject["properties"]>,
-) {
+  insertDoc: Realm.Services.MongoDB.NewDocument< NormalSchemaObject["properties"] >,
+){
+  typeof normalSchemaMap[name].properties 
   const insertCollection = user
     ?.mongoClient("mongodb-atlas")
     .db(DB_NAME!)

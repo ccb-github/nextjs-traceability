@@ -1,20 +1,17 @@
-import { adminMainPanels } from "#/lib/webcontents/mainPanel"
 import Link from "next/link"
+import { adminMainPanels } from "#/lib/webcontents/mainPanel"
 import { useTranslation } from "#/lib/i18n"
 import { NavItem } from "#/types/webContent"
-
-type PageParams = {
-  lng: string
-}
+import { BasePageParams } from "#/types/pageProp"
 
 export default async function AdminHomePage({
   params,
 }: {
-  params: PageParams
+  params: BasePageParams
 }) {
   const { lng } = params
   const { t } = await useTranslation(lng, "admin")
-
+  console.log(process.env)
   return (
     <>
       {adminMainPanels.map((section) => (
