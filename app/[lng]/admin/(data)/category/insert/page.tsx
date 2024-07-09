@@ -6,6 +6,7 @@ import { useTranslation } from "#/lib/i18n"
 import { BasePageProps } from "#/types/pageProp"
 import { BSON } from "realm-web"
 import { insertCategory } from "#/lib/api/gql/category"
+import categorySchema from "#/lib/schema/def/category"
 
 export default async function Page({ params: { lng } }: BasePageProps) {
   const { t } = await useTranslation(lng, "common")
@@ -65,11 +66,11 @@ export default async function Page({ params: { lng } }: BasePageProps) {
         </div>
       </div> */}
       <StringInputFieldTemplate
-        {...normalSchemaMap["Category"].properties["name"]}
+        {...categorySchema.properties["name"]}
         name={t("name", { ns: "category" })}
       />
       <StringInputFieldTemplate
-        {...normalSchemaMap["Category"].properties["description"]}
+        {...categorySchema.properties["description"]}
         name={t("description")}
       />
       <DateInputFieldTemplate
