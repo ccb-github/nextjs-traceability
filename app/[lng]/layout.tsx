@@ -23,17 +23,6 @@ export default function RootLayout({
       <body className={inter.className}>
         {/* <ConfirmContextProvider> */}
         <ApolloCookieWrapper>
-          {/* <ConfirmDialog
-              lng={lng}
-              closeAction={async () => {
-                "use server";
-                console.log("Confirm dialog closed");
-              }}
-              confirmAction={async () => {
-                "use server"
-                console.log("Confirm dialog confirmed");
-              }}
-            /> */}
           {children}
         </ApolloCookieWrapper>
         {/* </ConfirmContextProvider> */}

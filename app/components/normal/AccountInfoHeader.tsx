@@ -6,6 +6,7 @@ import Button from "../common/Button"
 import { useRouter } from "next/navigation"
 import { FaUser } from "react-icons/fa"
 import { useTranslation } from "#/lib/i18n/client"
+import { roleNameLabelMap } from "../admin/account/AccountList"
 
 export default function AccountFooter({ lng }: { lng: string }) {
   const realmApp = useApp()
@@ -66,7 +67,7 @@ export default function AccountFooter({ lng }: { lng: string }) {
               target="_blank"
               rel="noreferrer"
             >
-              {userData!.role}
+              {roleNameLabelMap[userData!.role]}
             </a>
           </span>
         </>

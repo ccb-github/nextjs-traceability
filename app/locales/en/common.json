@@ -1,5 +1,8 @@
 {
     "Login": "Login",
     "Email": "Email",
-    "Password": "Password"
+    "Password": "Password",
+    "data-field": {
+        "assemblePlace": "生产地"
+    }
 }

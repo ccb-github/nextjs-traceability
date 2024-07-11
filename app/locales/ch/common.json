@@ -41,6 +41,7 @@
         "Account edit": "帐号信息",
         "Set the role": "选择角色"
     },
+    "Admin(global)": "全局管理员",
     "data-field": {
         "assemblePlace": "生产地"
     }

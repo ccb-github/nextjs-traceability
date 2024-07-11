@@ -7,6 +7,6 @@ export type UserProfile = {
   name?: string
   isAdmin: boolean
   subrole?: "seller" | "producer"
-  role: "globalAdmin" | "customer" | "enterprise" | "regulatory"
+  role: "globalAdmin" | "customer" | "enterprise" | "regulatory" | "checker"
   emailVerified: boolean
 }
