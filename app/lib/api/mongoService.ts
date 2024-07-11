@@ -1,5 +1,6 @@
 import { normalSchemaMap } from "#/lib/schema"
 import { NormalSchemaName, NormalSchemaObject, SchemaName } from "#/lib/schema/format"
+import { UserProfile } from "#/types/data"
 
 if (process.env.NEXT_PUBLIC_MONGODB_ATLAS_DATABASE === undefined) {
   console.log(process.env)
@@ -10,7 +11,7 @@ const DB_NAME = process.env.NEXT_PUBLIC_MONGODB_ATLAS_DATABASE
 export async function getUsers(
   realmUser: Realm.User,
   filter?: Realm.Services.MongoDB.Filter,
-): Promise<unknown> {
+): Promise<UserProfile[]> {
   const collection = realmUser
     .mongoClient("mongodb-atlas")
     .db(DB_NAME!)
@@ -19,7 +20,7 @@ export async function getUsers(
   if (results) {
     return results
   } else {
-    return null
+    return []
   }
 }
 
@@ -27,7 +28,7 @@ export async function getData(
   realmUser: Realm.User,
   schemaName: NormalSchemaName,
   filter?: Realm.Services.MongoDB.Filter,
-): Promise<any | null> {
+): Promise<unknown[]> {
   const collection = realmUser
     .mongoClient("mongodb-atlas")
     .db(DB_NAME!)
@@ -36,7 +37,7 @@ export async function getData(
   if (results) {
     return results
   } else {
-    return null
+    return []
   }
 }
 /**

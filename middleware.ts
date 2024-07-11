@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 import acceptLanguage from "accept-language"
 import { fallbackLng, languages } from "./app/lib/i18n/settings"
 
@@ -9,15 +9,21 @@ export const config = {
   matcher: ["/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js).*)"],
 }
 
+/**
+ * @description cookie name for i18 language setting
+ */
 const cookieName = "i18next"
 
-//@ts-ignore
-export function middleware(req) {
+
+export function middleware(req: NextRequest) {
   let lng
+
+  //Load the language option in order(cookie, header, default)
   if (req.cookies.has(cookieName))
-    lng = acceptLanguage.get(req.cookies.get(cookieName).value)
-  if (!lng) lng = acceptLanguage.get(req.headers.get("Accept-Language"))
-  if (!lng) lng = fallbackLng
+    lng = acceptLanguage.get(req.cookies.get(cookieName)!.value)
+  if (!lng) {
+    lng = acceptLanguage.get(req.headers.get("Accept-Language")) ?? fallbackLng
+  }
 
   // Redirect if lng in path is not supported
   if (
@@ -30,7 +36,7 @@ export function middleware(req) {
   }
 
   if (req.headers.has("referer")) {
-    const refererUrl = new URL(req.headers.get("referer"))
+    const refererUrl = new URL(req.headers.get("referer")!)
     const lngInReferer = languages.find((l) =>
       refererUrl.pathname.startsWith(`/${l}`),
     )

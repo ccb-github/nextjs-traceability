@@ -2,7 +2,7 @@ import { AccountList } from "#/components/admin/account/AccountList";
 import BreadCrumb  from "#/components/common/BreadCrumb";
 import SideNavItem from "#/components/common/SideNavItem";
 
-import AccountFooter from "#/components/normal/AccountFooter";
+import AccountFooter from "#/components/normal/AccountInfoHeader";
 import { adminSideBarItems } from "#/lib/webcontents/sideBar";
 import { CommonLayoutProps } from "#/types/pageProp";
 import clsx from "clsx";

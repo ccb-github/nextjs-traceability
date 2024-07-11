@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 "use client"
 
 import { useTranslation } from "#/lib/i18n/client"
@@ -8,33 +7,25 @@ import type { ObjectID } from "bson"
 import { useEffect, useMemo, useState } from "react"
 import Button from "#/components/common/Button"
 import { useRouter } from "next/navigation"
+import { UserProfile } from "#/types/data"
 
-type AccountProfile = {
-  _id: ObjectID
-  _userId: string
-  role: "globalAdmin" | "customer" | "enterprise" | "regulatory" | "checker"
-  subrole?: string
-  email: string
-  emailVerified: boolean
-}
+
 type RoleNameLabel = {
-  [key in AccountProfile["role"]]: string
+  [key in UserProfile["role"]]: string
 }
-// Map the role value in database to the value on the web page
-const roleNameLabelMap: RoleNameLabel = {
+// Map the role value in database to the value displayed on the web page
+export const roleNameLabelMap: RoleNameLabel = {
   globalAdmin: "Admin(global)",
   enterprise: "Enterprise",
   customer: "Customer",
   regulatory: "Regulatory",
   checker: "Checker",
-}
-
-console.log(roleNameLabelMap)
+} 
 
 export function AccountList({ lng }: { lng: string }) {
   const mongoApp = useApp()
-  const { t } = useTranslation(lng, "account-list")
-  const [accounts, setAccounts] = useState<AccountProfile[]>()
+  const { t } = useTranslation(lng, "accountList")
+  const [accounts, setAccounts] = useState<UserProfile[]>()
   // The collection name of user profile(store as custom data)
 
   const router = useRouter()

@@ -1,7 +1,7 @@
 import BreadCrumb from "#/components/common/BreadCrumb"
 import SideNavItem from "#/components/common/SideNavItem"
 
-import AccountFooter from "#/components/normal/AccountFooter"
+import AccountInfoHeader from "#/components/normal/AccountInfoHeader"
 import { useTranslation } from "#/lib/i18n"
 import { adminSideBarItems } from "#/lib/webcontents/sideBar"
 import { CommonLayoutProps } from "#/types/pageProp"
@@ -47,6 +47,7 @@ export default async function AdminRootLayout({
 
             <h3 className="font-semibold tracking-wide text-gray-400 group-hover:text-gray-50">
               {t("Admin")}
+              {t("assemblePlace", {ns: "nstest"})}
             </h3>
           </Link>
         </div>
@@ -87,7 +88,7 @@ export default async function AdminRootLayout({
       </div>
       <div className="flex h-full flex-col lg:pl-72">
         <div className="flex-grow-0 rounded-lg" id="footer">
-          <AccountFooter lng={lng} />
+          <AccountInfoHeader lng={lng} />
         </div>
         <TopTabBar lng={lng} />
         <BreadCrumb className="flex-grow-0" lng={lng} />
