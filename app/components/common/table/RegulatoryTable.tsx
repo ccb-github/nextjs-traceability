@@ -1,5 +1,5 @@
 "use client"
-import { normalSchemaJson } from "#/lib/schema"
+import { normalSchemaMap } from "#/lib/schema"
 import React, { useRef } from "react"
 import { FaReacteurope } from "react-icons/fa"
 import { useTranslation } from "#/lib/i18n/client"
@@ -12,7 +12,7 @@ import SchemaDataReactTable from "../SchemaDataReactTable"
 import { useApp } from "#/hooks/useApp"
 import { useRouter } from "next/navigation"
 import { type GeneralDataTableWrapperProps } from "#/types/table"
-import regulatorySchemaJson, { RegulatorySchema } from "#/lib/schema/def/regulatory"
+import regulatorySchemaObject, { RegulatorySchema } from "#/lib/schema/def/regulatory"
 
 type RegulatoryReactTableProps = GeneralDataTableWrapperProps<
   Partial<Record<keyof RegulatorySchema, string>> & {
@@ -29,7 +29,7 @@ export default function RegulatoryTable({
   lng,
 }: RegulatoryReactTableProps) {
   const { t } = useTranslation(lng, "regulatory")
-  const schemaPropertiesRef = useRef(normalSchemaJson["Regulatory"].properties)
+  const schemaPropertiesRef = useRef(regulatorySchemaObject.properties)
   const realmApp = useApp()
   const router = useRouter()
   const editLink = `/${lng}/${
@@ -78,14 +78,12 @@ export default function RegulatoryTable({
             </span>
           </>
         )
-      } } 
-      columnOptions={
-        Object.values(regulatorySchemaJson.properties).map(
-        (prop) => ({
-          accessor: prop.mapTo as keyof RegulatorySchema,
-          header: t(prop.mapTo),
-          type: prop.dataType,
-        }))
-      }    />
+      }}
+      columnOptions={Object.values(regulatorySchemaObject.properties).map((prop) => ({
+        accessor: prop.mapTo as keyof RegulatorySchema,
+        header: t(prop.mapTo),
+        type: prop.dataType,
+      }))}
+    />
   )
 }

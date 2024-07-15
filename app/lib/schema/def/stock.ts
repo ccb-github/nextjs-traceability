@@ -1,6 +1,25 @@
-import type { SchemaObject } from "#/types/schema"
+import { type BSON } from "realm-web"
+import { NormalSchemaObject } from "#/lib/schema/format"
 
-const Stock: SchemaObject = {
+export type StockSchema = {
+  _id: BSON.ObjectID
+  address: {
+    name: "address",
+    dataType: "string",
+    indexed: false,
+    optional: true,
+    mapTo: "address",
+  },
+  name: {
+    name: "name",
+    dataType: "string",
+    indexed: false,
+    optional: false,
+    mapTo: "name",
+  },
+}
+
+const stockSchemaObject: NormalSchemaObject<keyof StockSchema> = {
   name: "Stock",
   properties: {
     _id: {
@@ -29,4 +48,4 @@ const Stock: SchemaObject = {
   embedded: false,
 }
 
-export default Stock
+export default stockSchemaObject

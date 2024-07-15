@@ -1,5 +1,5 @@
 "use client"
-import { normalSchemaJson } from "#/lib/schema"
+import { normalSchemaMap } from "#/lib/schema"
 
 import React, { useRef } from "react"
 import { FaReacteurope } from "react-icons/fa"
@@ -14,7 +14,7 @@ import SchemaDataReactTable from "../SchemaDataReactTable"
 import { useApp } from "#/hooks/useApp"
 import { useRouter } from "next/navigation"
 import { type GeneralDataTableWrapperProps } from "#/types/table"
-import enterpriseSchemaJson, { EnterpriseSchema } from "#/lib/schema/def/enterprise"
+import enterpriseSchemaObject, { EnterpriseSchema } from "#/lib/schema/def/enterprise"
 
 type EnterpriseReactTableProps = GeneralDataTableWrapperProps<
   Partial<Record<keyof EnterpriseSchema, string>> & {
@@ -32,7 +32,7 @@ export default function EnterpriseTable({
 }: EnterpriseReactTableProps) {
   const { t } = useTranslation(lng, "enterprise")
 
-  const schemaPropertiesRef = useRef(normalSchemaJson["Enterprise"].properties)
+  const schemaPropertiesRef = useRef(normalSchemaMap["Enterprise"].properties)
   const realmApp = useApp()
   const router = useRouter()
   const editLink = `/${lng}/${
@@ -50,7 +50,7 @@ export default function EnterpriseTable({
       schemaType={"Enterprise"}
       deleteEnabled={true}
       columnOptions={
-        Object.values(enterpriseSchemaJson.properties).map(
+        Object.values(enterpriseSchemaObject.properties).map(
         (prop) => ({
           accessor: prop.mapTo as keyof EnterpriseSchema,
           header: t(prop.mapTo),

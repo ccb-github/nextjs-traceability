@@ -1,33 +1,42 @@
-import categorySchema, { CategorySchema } from "./def/category"
-import Checker from "./def/checker"
-import enterpriseSchemaJson, { EnterpriseSchema } from "./def/enterprise"
-import productSchemaJson, { ProductSchema } from "./def/product"
-import regulatorySchemaJson, { RegulatorySchema } from "./def/regulatory"
-import checkRecordSchema from "./def/checkRecord"
-import Stock from "./def/stock"
-import Order, { OrderSchema } from "./def/order"
-import Logistic from "./def/logistic"
-import { EmbedSchemaObject, EmbeddedSchemaName, NormalSchemaName, NormalSchemaObject } from "./format"
+import categorySchemaObject, { CategorySchema } from "#/lib/schema/def/category"
+import CheckerSchemaObject from "#/lib/schema/def/checker"
+import enterpriseSchemaObject, { EnterpriseSchema } from "#/lib/schema/def/enterprise"
+import productSchemaObject, { ProductSchema } from "#/lib/schema/def/product"
+import regulatorySchemaObject, {
+  type RegulatorySchema,
+} from "#/lib/schema/def/regulatory"
+import checkRecordSchemaObject from "#/lib/schema/def/checkRecord"
+import stockSchemaObject from "#/lib/schema/def/stock"
+import OrderObject, { OrderSchema } from "#/lib/schema/def/order"
 
-export type NormalSchemaJson = {
+import type {
+  EmbedSchemaObject,
+  EmbeddedSchemaName,
+  NormalSchemaName,
+  NormalSchemaObject,
+} from "./format"
+
+export type NormalSchemaMap = {
   [key in NormalSchemaName]: NormalSchemaObject
 }
-export type EmbeddedSchemaJson = {
+export type EmbeddedSchemaMap = {
   [key in EmbeddedSchemaName]: EmbedSchemaObject<string>
 }
 
-export const normalSchemaJson: NormalSchemaJson = {
-  Category: categorySchema,
-  Checker,
-  CheckRecord: checkRecordSchema,
-  Enterprise: enterpriseSchemaJson,
-  Product: productSchemaJson,
-  Regulatory: regulatorySchemaJson,
-  Order,
-  Stock,
-  Logistic,
-}
+export const normalSchemaMap: NormalSchemaMap = {
+  Category: categorySchemaObject,
+  Checker: CheckerSchemaObject,
+  CheckRecord: checkRecordSchemaObject,
+  Enterprise: enterpriseSchemaObject,
+  Product: productSchemaObject,
+  Regulatory: regulatorySchemaObject,
+  Order: OrderObject,
+  Stock: stockSchemaObject,
 
+}
+/**
+ * @todo Decide if this is still need
+ */
 export type SchemaTypeMapper = {
   Category: CategorySchema
   Enterprise: EnterpriseSchema

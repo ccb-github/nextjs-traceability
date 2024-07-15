@@ -1,4 +1,4 @@
-import { EmbeddedSchemaJson, NormalSchemaJson } from "#/lib/schema"
+import { EmbeddedSchemaMap, NormalSchemaMap } from "#/lib/schema"
 import { EmbedSchemaObject, NormalSchemaObject } from "../format"
 
 export type QrcodeSchemaEmbed = {
@@ -8,7 +8,7 @@ export type LocationSchemaEmbed = {
   latitude: number
   longitude: number
 }
-const qrcodeSchemaEmbed: EmbedSchemaObject<keyof QrcodeSchemaEmbed> = {
+const qrcodeSchemaEmbedObject: EmbedSchemaObject<keyof QrcodeSchemaEmbed> = {
   
   name: "Qrcode",
   embedded: true,
@@ -22,7 +22,7 @@ const qrcodeSchemaEmbed: EmbedSchemaObject<keyof QrcodeSchemaEmbed> = {
     },
   }
 }
-const locationSchemaEmbed: EmbedSchemaObject<keyof LocationSchemaEmbed> = {
+const locationSchemaEmbedObject: EmbedSchemaObject<keyof LocationSchemaEmbed> = {
   
   name: "Location",
   properties: {
@@ -44,9 +44,9 @@ const locationSchemaEmbed: EmbedSchemaObject<keyof LocationSchemaEmbed> = {
   embedded: true,
   
 }
-const embedSchema: EmbeddedSchemaJson = {
-  Location: locationSchemaEmbed,
-  Qrcode: qrcodeSchemaEmbed
+const embedSchemaMap: EmbeddedSchemaMap = {
+  Location: locationSchemaEmbedObject,
+  Qrcode: qrcodeSchemaEmbedObject
 }
 
-export default embedSchema
+export default embedSchemaMap

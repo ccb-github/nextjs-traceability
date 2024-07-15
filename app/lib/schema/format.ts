@@ -12,10 +12,16 @@ export type SchemaDataPropType =
   | "list"
   | "uuid"
   | "bool"
-// Mongodb has two types of schema(one embedded for sub data purely exists for main data, other one normal)
+/** 
+ * @description Mongodb has two types of schema
+(one embedded for sub data purely exists for main data
+  , other one normal)
+*/
 export type EmbeddedSchemaName = "Location" | "Qrcode"
-
-export enum URL_TO_SCHEMANAME{
+/**
+ * @description map the schema name 
+ */
+export enum URL_TO_SCHEMANAME {
   "product" = "Product",
   "enterprise" = "Enterprise",
   "order" = "Order",
@@ -24,7 +30,7 @@ export enum URL_TO_SCHEMANAME{
   "category" = "Category",
   "checkRecord" = "CheckRecord",
   "stock" = "Stock",
-  "logistic" = "Logistic"
+ 
 }
 export type NormalSchemaName =
   | "Enterprise"
@@ -35,7 +41,7 @@ export type NormalSchemaName =
   | "Category"
   | "CheckRecord"
   | "Stock"
-  | "Logistic"
+
 
 export type SchemaName = EmbeddedSchemaName | NormalSchemaName
 
