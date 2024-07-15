@@ -1,5 +1,5 @@
 "use client"
-import { SchemaResultMapper } from "#/types/schema"
+import { ProductSchema } from "#/lib/schema/def/product"
 import { useRef } from "react"
 import { MultiValue } from "react-select"
 
@@ -22,7 +22,7 @@ const AsyncSelect = ({
   inputId?: string
   asyncLoadOptions?: () => Promise<ColourOption[]>
   loadFunction?: () => Promise<
-    Partial<Record<keyof SchemaResultMapper["Product"], string>>[]
+    Partial<Record<keyof ProductSchema, string>>[]
   >
 }) => {
   const helperRef = useRef<HTMLInputElement>(null)

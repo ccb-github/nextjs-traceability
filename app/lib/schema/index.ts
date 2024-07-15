@@ -1,14 +1,14 @@
-import categorySchema, { CategorySchema } from "#/lib/schema/def/category"
-import Checker from "#/lib/schema/def/checker"
-import enterpriseSchema, { EnterpriseSchema } from "#/lib/schema/def/enterprise"
+import categorySchemaObject, { CategorySchema } from "#/lib/schema/def/category"
+import CheckerSchemaObject from "#/lib/schema/def/checker"
+import enterpriseSchemaObject, { EnterpriseSchema } from "#/lib/schema/def/enterprise"
 import productSchemaObject, { ProductSchema } from "#/lib/schema/def/product"
-import regulatorySchema, {
+import regulatorySchemaObject, {
   type RegulatorySchema,
 } from "#/lib/schema/def/regulatory"
-import checkRecordSchema from "#/lib/schema/def/checkRecord"
-import Stock from "#/lib/schema/def/stock"
-import Order, { OrderSchema } from "#/lib/schema/def/order"
-import Logistic from "#/lib/schema/def/logistic"
+import checkRecordSchemaObject from "#/lib/schema/def/checkRecord"
+import stockSchemaObject from "#/lib/schema/def/stock"
+import OrderObject, { OrderSchema } from "#/lib/schema/def/order"
+
 import type {
   EmbedSchemaObject,
   EmbeddedSchemaName,
@@ -24,17 +24,19 @@ export type EmbeddedSchemaMap = {
 }
 
 export const normalSchemaMap: NormalSchemaMap = {
-  Category: categorySchema,
-  Checker,
-  CheckRecord: checkRecordSchema,
-  Enterprise: enterpriseSchema,
+  Category: categorySchemaObject,
+  Checker: CheckerSchemaObject,
+  CheckRecord: checkRecordSchemaObject,
+  Enterprise: enterpriseSchemaObject,
   Product: productSchemaObject,
-  Regulatory: regulatorySchema,
-  Order,
-  Stock,
-  Logistic,
-}
+  Regulatory: regulatorySchemaObject,
+  Order: OrderObject,
+  Stock: stockSchemaObject,
 
+}
+/**
+ * @todo Decide if this is still need
+ */
 export type SchemaTypeMapper = {
   Category: CategorySchema
   Enterprise: EnterpriseSchema

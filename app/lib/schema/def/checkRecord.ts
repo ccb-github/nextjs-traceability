@@ -7,7 +7,7 @@ export type CheckRecordSchema = {
   result: string
   device?: BSON.ObjectID
 }
-export const checkRecordSchema: NormalSchemaObject<keyof CheckRecordSchema> = {
+export const checkRecordSchemaObject: NormalSchemaObject<keyof CheckRecordSchema> = {
   embedded: false,
   name: "CheckRecord",
   primaryKey: "_id",
@@ -66,4 +66,4 @@ export const checkRecordSchema: NormalSchemaObject<keyof CheckRecordSchema> = {
   },
 }
 
-export default checkRecordSchema
+export default checkRecordSchemaObject

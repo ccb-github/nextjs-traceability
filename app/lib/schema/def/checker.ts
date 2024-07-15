@@ -8,7 +8,7 @@ export type CheckerSchema = {
   email: string
   name: string
 }
-const Checker: NormalSchemaObject<keyof CheckerSchema> = {
+const CheckerSchemaObject: NormalSchemaObject<keyof CheckerSchema> = {
   name: "Checker",
   properties: {
     _id: {
@@ -53,4 +53,4 @@ const Checker: NormalSchemaObject<keyof CheckerSchema> = {
   embedded: false,
 }
 
-export default Checker
+export default CheckerSchemaObject

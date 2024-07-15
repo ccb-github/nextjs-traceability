@@ -12,7 +12,7 @@ import SchemaDataReactTable from "../SchemaDataReactTable"
 import { useApp } from "#/hooks/useApp"
 import { useRouter } from "next/navigation"
 import { type GeneralDataTableWrapperProps } from "#/types/table"
-import regulatorySchema, { RegulatorySchema } from "#/lib/schema/def/regulatory"
+import regulatorySchemaObject, { RegulatorySchema } from "#/lib/schema/def/regulatory"
 
 type RegulatoryReactTableProps = GeneralDataTableWrapperProps<
   Partial<Record<keyof RegulatorySchema, string>> & {
@@ -80,7 +80,7 @@ export default function RegulatoryTable({
           </>
         )
       }}
-      columnOptions={Object.values(regulatorySchema.properties).map((prop) => ({
+      columnOptions={Object.values(regulatorySchemaObject.properties).map((prop) => ({
         accessor: prop.mapTo as keyof RegulatorySchema,
         header: t(prop.mapTo),
         type: prop.dataType,

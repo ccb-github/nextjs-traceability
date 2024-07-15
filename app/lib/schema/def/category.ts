@@ -29,7 +29,7 @@ export type CategoryGqlResult = Partial<
 /**
  * @param {CategorySchema} Derive from categorySchema
  */
-const categorySchema: NormalSchemaObject<keyof CategorySchema> = {
+const categorySchemaObject: NormalSchemaObject<keyof CategorySchema> = {
   name: "Category",
   // dataType: "selectList",
   properties: {
@@ -66,4 +66,4 @@ const categorySchema: NormalSchemaObject<keyof CategorySchema> = {
   embedded: false,
 }
 
-export default categorySchema
+export default categorySchemaObject

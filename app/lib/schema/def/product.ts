@@ -14,7 +14,7 @@ export type ProductSchema = {
   producer?: EnterpriseSchema
   shelfLife: number
   standard: string
-  status: string
+  status: ProductStatus
 }
 export const productSchemaObject: NormalSchemaObject<keyof ProductSchema> = {
   name: "Product",

@@ -9,7 +9,7 @@ export type OrderSchema = {
   paymentMethod: string
   products: Array<ProductSchema>
 }
-const Order: NormalSchemaObject<keyof OrderSchema> = {
+const OrderObject: NormalSchemaObject<keyof OrderSchema> = {
   name: "Order",
   properties: {
     _id: {
@@ -61,4 +61,4 @@ const Order: NormalSchemaObject<keyof OrderSchema> = {
   embedded: false,
 }
 
-export default Order
+export default OrderObject
