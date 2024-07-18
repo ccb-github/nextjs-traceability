@@ -1,7 +1,6 @@
 "use client"
 import { useState } from "react"
 import * as Realm from "realm-web"
-
 export function useApp() {
   console.log(fetch)
   const [app] = useState<Realm.App>(

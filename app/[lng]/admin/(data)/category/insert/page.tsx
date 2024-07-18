@@ -1,7 +1,6 @@
 import DateInputFieldTemplate from "#/components/common/input/DateInputFieldTemplate"
 import { StringInputFieldTemplate } from "#/components/form/input/StringInputFieldTemplate"
 
-import { normalSchemaMap } from "#/lib/schema"
 import { useTranslation } from "#/lib/i18n"
 import { BasePageProps } from "#/types/pageProp"
 import { BSON } from "realm-web"

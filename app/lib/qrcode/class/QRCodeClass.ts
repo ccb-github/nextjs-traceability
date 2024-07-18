@@ -5,7 +5,7 @@ import QRRSBlock, { QRErrorCorrectLevel } from "./QRRSBlock"
 //TODO optimize type of enum member
 
 //---------------------------------------------------------------------
-// QRCode 保存QR码数据矩阵
+// QRCode store qrcode matrix object
 //---------------------------------------------------------------------
 export default class QRCode {
   static PAD0 = 0xec
@@ -170,7 +170,9 @@ export default class QRCode {
    * Return the module value
    */
   isDark(row: number, col: number) {
-    //Check the argument is valid
+    /** 
+    * @description Check if the argument is valid
+    */
     if (
       row < 0 ||
       this.moduleCount <= row ||
@@ -452,8 +454,8 @@ export default class QRCode {
     //Adjust the canvas size according to qrcode version setting
     const qrSize = this.getModuleCount()
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //@ts-ignore
-    canvas.setAttribute("height", qrSize * dotSize + padding)
+   
+    canvas.setAttribute("height", (qrSize * dotSize + padding).toString())
     //@ts-ignore
     canvas.setAttribute("width", qrSize * dotSize + padding)
     const shiftForPadding = padding / 2

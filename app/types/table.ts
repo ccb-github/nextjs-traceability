@@ -4,6 +4,6 @@
  * @example GeneralDataTableWrapperProps<{_id: string}>
  */
 export type GeneralDataTableWrapperProps<DataItem extends { _id: string }> = {
-  data: DataItem[]
+  data: readonly DataItem[]
   lng: string
 }

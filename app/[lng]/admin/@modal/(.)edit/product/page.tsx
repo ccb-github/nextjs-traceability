@@ -65,7 +65,7 @@ export default async function ProductEditPage({
             templateHTML({
               //@ts-ignore
               ...schemaObj.properties[e],
-              defaultValue: product[e as keyof SchemaTypeMapper["Product"]],
+              defaultValue: product[e as keyof ProductSchema],
             }),
           )}
 
