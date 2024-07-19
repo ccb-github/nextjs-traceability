@@ -95,8 +95,8 @@ export default function SchemaDataReactTable<DataItem extends { _id: unknown}>({
   )
   const currentPath = usePathname()
   /**
-   * The column definition array with shape
-   *
+   * The column definition array with shape like
+   * @type {DataItem}
    */
   const columnDefs = useMemo<ColumnDef<DataItem>[]>(() => {
     if (columnOptions === undefined) {

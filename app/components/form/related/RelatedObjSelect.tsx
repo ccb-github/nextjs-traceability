@@ -1,6 +1,8 @@
 "use client"
 import { useApp } from "#/hooks/useApp"
-import { NormalSchemaName, SchemaResultMapper } from "#/types/schema"
+import { SchemaTypeMapper } from "#/lib/schema"
+import { NormalSchemaName } from "#/lib/schema/format"
+
 import { useEffect, useRef, useState } from "react"
 // TODO The id must can be stringify
 export default function RelatedObjectSelect({
@@ -13,7 +15,7 @@ export default function RelatedObjectSelect({
 }: {
   objectType: NormalSchemaName
   className?: string
-  displayKey: keyof SchemaResultMapper[NormalSchemaName]
+  displayKey: keyof SchemaTypeMapper[NormalSchemaName]
   name?: string
   label?: string
   linked?: boolean
@@ -21,7 +23,7 @@ export default function RelatedObjectSelect({
 }) {
   //TODO provide the type
   const [dataList, setDataList] = useState<
-    SchemaResultMapper[NormalSchemaName][]
+    SchemaTypeMapper[NormalSchemaName][]
   >([])
   const mongoApp = useApp()
   const mongoCol = useRef(

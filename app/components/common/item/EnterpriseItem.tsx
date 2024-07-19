@@ -1,6 +1,6 @@
 'use client'
 import { useTranslation } from "#/lib/i18n/client"
-import { SchemaResultMapper } from "#/types/schema"
+import { SchemaResultMapper } from "#/lib/schema/format"
 
 export default function EnterpriseItem({
   lng,

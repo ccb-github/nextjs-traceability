@@ -16,26 +16,27 @@ import { insertDataToCol } from "#/lib/api/mongoService"
 
 import ModalQRCodeDialog from "./ModalQRCodeDialog"
 import { templateHTML } from "./templateHTML"
-import { NormalSchemaName, SchemaName, SchemaObject} from "#/lib/schema/format"
+import { NormalSchemaName, SchemaName, NormalSchemaObject} from "#/lib/schema/format"
+import { SchemaTypeMapper } from "#/lib/schema"
 
 //TODO default value with name
 /** filter: filterProps,
  * Describe
  * Search by filter, given param id will filter._id
  * @date 2023-03-29
- * @param {SchemaObject} schemaObj : schema object used as the template for rendering the table
+ * @param {NormalSchemaObject} schemaObj : schema object used as the template for rendering the table
 
  * @param {string} lng}: Language string, etc: ch, en
  * @returns {HTMLFormElement}
  */
-export default function AddDataForm<SchemaN extends SchemaName>({
+export default function AddDataForm<SchemaN extends NormalSchemaName>({
   schemaObj,
   schemaName,
   children,
   customizeSubmitAction,
   lng,
 }: {
-  schemaObj: SchemaObject<SchemaN>
+  schemaObj: SchemaTypeMapper[SchemaN]
   schemaName: SchemaN
   customizeSubmitAction?: (theData: unknown) => unknown
   // TODO the type

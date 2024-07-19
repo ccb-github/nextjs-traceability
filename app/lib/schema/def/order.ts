@@ -1,6 +1,7 @@
 import { type BSON } from "realm-web"
 import { type ProductSchema } from "#/lib/schema/def/product"
 import { type NormalSchemaObject } from "#/lib/schema/format"
+
 export type OrderSchema = {
   _id: BSON.ObjectID
   customerId: string
@@ -9,6 +10,18 @@ export type OrderSchema = {
   paymentMethod: string
   products: Array<ProductSchema>
 }
+
+/**
+ * @description Type for Order data insert
+ */
+export type OrderGqlInsert = OrderSchema
+
+export type OrderGqlResult = Partial<
+  Record<keyof OrderSchema, unknown>
+> & {
+  _id: string
+}
+
 const OrderObject: NormalSchemaObject<keyof OrderSchema> = {
   name: "Order",
   properties: {

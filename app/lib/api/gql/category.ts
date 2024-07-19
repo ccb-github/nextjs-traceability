@@ -5,10 +5,11 @@ import { createClient } from "../apolloClient"
 import {
   CategoryGqlInsert,
   CategoryGqlQuery,
+  CategoryGqlResult,
   CategorySchema,
 } from "#/lib/schema/def/category"
 
-export const QUERY_CATEGORIES = gql`
+export const FIND_CATEGORIES = gql`
   query queryCategories($query: CategoryQueryInput) {
     categories(query: $query) {
       _id
@@ -19,15 +20,19 @@ export const QUERY_CATEGORIES = gql`
   }
 `
 
-export async function queryCategories(
+export async function findCategories(
   variables?: CategoryGqlQuery,
-): Promise<CategoryGqlQuery[]> {
+){
+  //: Promise<CategoryGqlResult[]> 
   try {
     const client = createClient(getCookieByName("accessToken")!)
     const {
       data: { categories },
-    } = await client.query({
-      query: QUERY_CATEGORIES,
+    } = await client.query<{
+      categories:
+      CategoryGqlResult[]
+    }>({
+      query: FIND_CATEGORIES,
       variables,
     })
     return categories
@@ -43,8 +48,8 @@ export async function queryCategories(
   }
 }
 
-export const INSERT_CATEGORY = gql`
-  mutation insertCategory($newCategory: CategoryInsertInput!) {
+export const INSERT_ONE_CATEGORY = gql`
+  mutation insertOneCategory($newCategory: CategoryInsertInput!) {
     insertOneCategory(data: $newCategory) {
       _id
       name
@@ -52,13 +57,13 @@ export const INSERT_CATEGORY = gql`
   }
 `
 
-export async function insertCategory(variables: CategoryGqlInsert): Promise<{
-  categories: Partial<Record<keyof CategorySchema, unknown>>[]
+export async function insertOneCategory(variables: CategoryGqlInsert): Promise<{
+  categories: Partial<Record<keyof CategoryGqlResult, unknown>>[]
 }> {
   try {
     const client = createClient(getCookieByName("accessToken")!)
     const { data } = await client.mutate({
-      mutation: QUERY_CATEGORIES,
+      mutation: INSERT_ONE_CATEGORY,
       variables,
     })
     return data

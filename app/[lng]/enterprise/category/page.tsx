@@ -1,12 +1,12 @@
 import CategoryTable from "#/components/common/table/CategoryTable"
-import { queryCategories } from "#/lib/api/gql/category"
+import { findCategories } from "#/lib/api/gql/category"
 import { type BasePageProps } from "#/types/pageProp"
 import React from "react"
 
 export default async function EnterpriseCategoryManagePage({
   params: { lng },
 }: BasePageProps) {
-  const categories = await queryCategories()
+  const categories = await findCategories()
 
   return (
     <div id="data-table" className="flex flex-column h-full w-full">

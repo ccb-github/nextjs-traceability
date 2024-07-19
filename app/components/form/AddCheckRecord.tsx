@@ -1,7 +1,7 @@
 import { useApp } from "#/hooks/useApp";
 import { insertDataToCol } from "#/lib/api/mongoService";
 import fieldConvert from "#/lib/fieldConvert";
-import { SchemaObject } from "#/types/schema";
+import { NormalSchemaObject } from "#/lib/schema/format";
 import { useRef, useState, useEffect, FormEvent } from "react";
 import { BSON } from "realm-web";
 import { templateHTML } from "./templateHTML";
@@ -12,7 +12,7 @@ RelatedItemDialog
  * Describ
  * Search by filter, given param id will filter._id
  * @date 2023-03-29
- * @param {SchemaObject} schemaObj : schema object used as the template for rendering the table
+ * @param {NormalSchemaObject} schemaObj : schema object used as the template for rendering the table
 
  * @param {string} lng: Language string, etc: ch, en
  * @returns {HTMLFormElement}
@@ -23,7 +23,7 @@ export default function AddCheckRecord({
     
     lng
   }: {
-    schemaObj: SchemaObject;
+    schemaObj: NormalSchemaObject;
     customizeSubmitAction?: (theData: any) => any; 
     lng: string;
     children?: React.ReactNode
@@ -77,10 +77,10 @@ export default function AddCheckRecord({
         //setQRCodeMessage(JSON.stringify(insertData.current))
         //alert(`Just insert an item with ${result.insertedId}`)
        
-      } catch (error: any) {
+      } catch (error) {
         
-        if(error.message){
-          //@ts-ignore
+        if(Object.hasOwn(error ?? {}, "message")){
+          
           alert(error.message)
         }
         submitEvent.preventDefault()

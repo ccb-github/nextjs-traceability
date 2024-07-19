@@ -8,7 +8,7 @@ export const useCollection = (collectionName: NormalSchemaName) => {
   const [collection, setCollection] =
     useState<
       Realm.Services.MongoDB.MongoDBCollection<
-        SchemaTypeMapper[NormalSchemaName]
+        SchemaTypeMapper[NormalSchemaName] & {_id: unknown}
       >
     >()
   useEffect(() => {

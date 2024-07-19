@@ -1,9 +1,10 @@
 import { getCookieByName } from "#/components/util/cookie"
 import { ApolloError, gql } from "@apollo/client"
 import { createClient } from "../apolloClient"
+import { CheckRecordGqlResult, CheckRecordGqlFilter } from "#/lib/schema/def/checkRecord"
 
-export const QUERY_CHECK_RECORDS = gql`
-  query queryCheckRecords($query: CheckRecordQueryInput) {
+export const FIND_CHECK_RECORDS = gql`
+  query findCheckRecords($query: CheckRecordQueryInput) {
     checkRecords(query: $query) {
       _id
       device
@@ -13,13 +14,14 @@ export const QUERY_CHECK_RECORDS = gql`
     }
   }
 `
-export async function queryCheckRecords() {
+export async function findCheckRecords(filter?: CheckRecordGqlFilter) {
   try {
     const client = createClient(getCookieByName("accessToken")!)
     const {
       data: { checkRecords },
     } = await client.query({
-      query: QUERY_CHECK_RECORDS,
+      query: FIND_CHECK_RECORDS,
+      variables: filter
     })
     console.groupEnd()
     return checkRecords
@@ -38,7 +40,7 @@ export const INSERT_CHECK_RECORD = gql`
 `
 
 export async function insertCheckRecord(
-  newCheckRecord: Partial<Record<keyof Check>>,
+  newCheckRecord: Partial<Record<keyof CheckRecordGqlResult, unknown>>,
 ) {
   //apollo client
   try {

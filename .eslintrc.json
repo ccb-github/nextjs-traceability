@@ -1,29 +1,30 @@
 {
-  "env": {
-      "browser": true,
-      "es2021": true,
-      "node": true
-  },
-  "rules": {
-     "prettier/prettier": "warn",
-     "quotes": ["warn", "double"],
-     "@typescript-eslint/ban-ts-comment": "off"
-  },
-  "extends": [
-      "eslint:recommended", 
-      "plugin:@typescript-eslint/recommended",
-      "next/core-web-vitals",
-      "plugin:react/recommended",
-      "eslint-config-next"
-  ],
- 
-  "parser": "@typescript-eslint/parser",
-  "plugins": [
-      "@typescript-eslint",
-      "react",
-      "prettier",
-      "only-warn",
-      "eslint-plugin-tsdoc"
-  ],
-  "root": true
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+    "rules": {
+       "prettier/prettier": "warn",
+       "quotes": ["warn", "double"],
+       "@typescript-eslint/ban-ts-comment": "off"
+    },
+    "extends": [
+        "eslint:recommended", 
+        "plugin:@typescript-eslint/recommended",
+        "next/core-web-vitals",
+        "plugin:react/recommended",
+        "eslint-config-next"
+    ],
+   
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint",
+        "react",
+        "prettier",
+        "only-warn",
+        "eslint-plugin-tsdoc"
+    ],
+    "root": true
 }
+  

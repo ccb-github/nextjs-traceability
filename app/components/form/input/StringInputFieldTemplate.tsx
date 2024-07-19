@@ -1,6 +1,6 @@
 "use client"
 import React from "react"
-import type { SchemaProperty } from "#/types/schema"
+import type { SchemaProperty } from "#/lib/schema/format"
 import TypeSpan from "#/components/common/input/TypeSpan"
 
 export function StringInputFieldTemplate(props: SchemaProperty) {

@@ -7,6 +7,23 @@ export type CheckRecordSchema = {
   result: string
   device?: BSON.ObjectID
 }
+
+/**
+ * @description Filter to query CheckRecord
+ */
+export type CheckRecordGqlFilter = Partial<CheckRecordSchema>
+
+/**
+ * @description Type for CheckRecord data insert
+ */
+export type CheckRecordGqlInsert = CheckRecordSchema
+
+export type CheckRecordGqlResult = Partial<
+  Record<keyof CheckRecordSchema, unknown>
+> & {
+  _id: string
+}
+
 export const checkRecordSchemaObject: NormalSchemaObject<keyof CheckRecordSchema> = {
   embedded: false,
   name: "CheckRecord",
@@ -26,14 +43,7 @@ export const checkRecordSchemaObject: NormalSchemaObject<keyof CheckRecordSchema
       optional: false,
       dataType: "string",
     },
-    // target: {
-    //   name: "target",
-    //   dataType: "select",
-    //   objectType: "Product",
-    //   indexed: false,
-    //   optional: false,
-    //   mapTo: "target",
-    // },
+   
     method: {
       indexed: false,
       mapTo: "method",
@@ -48,14 +58,7 @@ export const checkRecordSchemaObject: NormalSchemaObject<keyof CheckRecordSchema
       optional: false,
       dataType: "string",
     },
-    // operator: {
-    //   indexed: false,
-    //   mapTo: "operator",
-    //   name: "operator",
-    //   objectType: "Checker",
-    //   optional: true,
-    //   dataType: "object",
-    // },
+   
     result: {
       indexed: false,
       mapTo: "result",

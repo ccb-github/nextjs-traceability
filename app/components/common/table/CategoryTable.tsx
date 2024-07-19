@@ -1,6 +1,5 @@
 "use client"
 import { normalSchemaMap } from "#/lib/schema"
-import type { SchemaResultMapper } from "#/types/schema"
 import React, { useRef } from "react"
 import { FaReacteurope } from "react-icons/fa"
 
@@ -38,7 +37,7 @@ export default function CategoryTable({ data, lng }: CategoryReactTableProps) {
 
   return (
     <SchemaDataReactTable<
-      Partial<Record<keyof SchemaResultMapper["Category"], string>> & {
+      Partial<Record<keyof CategorySchema, string>> & {
         _id: string
       }
     >

@@ -1,4 +1,4 @@
-import { SchemaProperty } from "#/types/schema"
+import { SchemaProperty } from "#/lib/schema/format"
 
 
 import TypeSpan from "./TypeSpan"

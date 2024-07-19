@@ -1,5 +1,5 @@
 "use client"
-import { SchemaProperty } from "#/types/schema"
+import { SchemaProperty } from "#/lib/schema/format"
 import { useState } from "react"
 import { FiRefreshCw } from "react-icons/fi"
 import Button from "../Button"

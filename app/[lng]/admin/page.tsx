@@ -3,6 +3,7 @@ import { adminMainPanels } from "#/lib/webcontents/mainPanel"
 import { useTranslation } from "#/lib/i18n"
 import { NavItem } from "#/types/webContent"
 import { BasePageParams } from "#/types/pageProp"
+import { AllowedCategoryList } from "#/components/common/AllowedCategory"
 
 export default async function AdminHomePage({
   params,
@@ -36,10 +37,9 @@ export default async function AdminHomePage({
           </div>
         </div>
       ))}
-      {/* <section>
-        
-        <QRCodeImg src="https://cn.bing.com"/>
-      </section> */}
+      
+      <AllowedCategoryList list={[""]}/>
+      
     </>
   )
 }

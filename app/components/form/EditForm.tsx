@@ -5,7 +5,7 @@ import fieldConvert from '#/lib/fieldConvert';
 
 import React, { FormEvent, useEffect, useRef, useState } from 'react';
 import { BSON } from 'realm-web';
-import { SchemaObject } from '#/types/schema'; 
+import { NormalSchemaObject } from '#/lib/schema/format'; 
 import { insertDataToCol, updateCollection } from '#/lib/api/mongoService';
 
 
@@ -21,7 +21,7 @@ const OMMIT_FIELD = ["ownerId", "_id"]
  * Describ
  * Search by filter, given param id will filter._id
  * @date 2023-03-29
- * @param {SchemaObject} schemaObj : schema object used as the template for rendering the table
+ * @param {NormalSchemaObject} schemaObj : schema object used as the template for rendering the table
 
  * @param {string} lng}: Language string, etc: ch, en
  * @returns {HTMLFormElement}
@@ -33,7 +33,7 @@ export default function EditDataForm({
   initialValue,
   lng
 }: {
-  schemaObj: SchemaObject;
+  schemaObj: NormalSchemaObject;
   customizeSubmitAction?: (theData: any) => any; 
   lng: string;
   initialValue: any;
@@ -73,7 +73,8 @@ export default function EditDataForm({
         Object.defineProperty(insertData.current, item[0], {
           writable: true,
           enumerable: true,
-          value: fieldConvert(item[1], schemaObj.properties[item[0]].type),
+          //The type assertation is because the data should be responsibility of form design not code at this stage
+          value: fieldConvert(item[1] as string, schemaObj.properties[item[0]].type),
         })
       }
       insertData.current._id = new BSON.ObjectId()

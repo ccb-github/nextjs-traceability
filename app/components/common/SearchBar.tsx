@@ -1,6 +1,6 @@
 "use client"
+import { type NormalSchemaName } from "#/lib/schema/format"
 import { SearchIcon } from "../icons"
-import { NormalSchemaName } from "#/types/schema"
 
 export default function SearchBar({
   className,

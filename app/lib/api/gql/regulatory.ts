@@ -56,7 +56,7 @@ export async function getAllRegulatory({
 }: {
   query?: Partial<Record<keyof RegulatorySchema, string>>
 }): Promise<
-  readonly (Partial<Record<keyof RegulatorySchema, string>> & { _id: string })[]
+  (Partial<Record<keyof RegulatorySchema, string>> & { _id: string })[]
 > {
   try {
     const client = createClient(getCookieByName("accessToken")!)

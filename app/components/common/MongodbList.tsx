@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react"
 import { useApp } from "#/hooks/useApp"
 import { BSON } from "realm-web"
 import SchemaDataReactTable from "./SchemaDataReactTable"
-import { normalSchemaMap } from "#/lib/schema"
 import { ProductSchema } from "#/lib/schema/def/product"
 import { URL_TO_SCHEMANAME } from "#/lib/schema/format"
 
@@ -14,7 +13,7 @@ interface MongodbListProps {
   id?: string
   filter?: Realm.Services.MongoDB.Filter
   lng: string
-  sortOption?: unknown
+  sortOption?: Record<string, unknown>
 }
 //TODO default value with name
 /** filter: filterProps,
@@ -27,7 +26,6 @@ interface MongodbListProps {
  * @param {any} filter
  * @param {string} id: The objectid(primary key) string
  * @param {string} lng: Language string, etc: ch, en
- * @returns {SchemaObject}
  */
 export default function MongodbList({
   type,

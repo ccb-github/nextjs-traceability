@@ -2,7 +2,7 @@ import Button from "#/components/common/Button"
 
 import { templateHTML } from "#/components/form/templateHTML"
 
-import { getEnterpriseById, updateEnterprise } from "#/lib/api/gql/enterprise"
+import { getEnterpriseById, updateOneEnterprise } from "#/lib/api/gql/enterprise"
 import { normalSchemaMap } from "#/lib/schema"
 import { BasePageProps } from "#/types/pageProp"
 import Script from "next/script"
@@ -28,7 +28,7 @@ export default async function EnterpriseEditPage({
         : undefined,
     }
     try {
-      const result = await updateEnterprise({
+      const result = await updateOneEnterprise({
         query: { _id: new BSON.ObjectId(id as string) },
         set: setData,
       })

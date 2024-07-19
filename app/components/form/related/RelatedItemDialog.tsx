@@ -1,6 +1,6 @@
 "use client"
 
-import { NormalSchemaName, SchemaName } from "#/types/schema"
+import { NormalSchemaName, SchemaName } from "#/lib/schema/format"
 import { useEffect } from "react"
 import RelatedObjectSelect from "./RelatedObjSelect"
 

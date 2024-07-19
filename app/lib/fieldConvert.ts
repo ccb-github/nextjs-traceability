@@ -1,5 +1,6 @@
-import { SchemaDataPropType } from "#/types/schema"
+
 import { BSON } from "realm-web"
+import { SchemaDataPropType } from "#/lib/schema/format"
 
 export default fieldConvert
 

@@ -1,13 +1,14 @@
+"use client"
 import { useContext, useEffect, useRef } from "react"
 import { AppContext } from "../AppProvider"
-import { SchemaResultMapper } from "#/types/schema"
-import category from "#/lib/schema/category"
+import { CategoryGqlResult } from "#/lib/schema/def/category"
+
 
 export const AllowedCategoryList = ({list}: {list: string[]}) => {
   const appContext = useContext(AppContext)
   const { useCollection } = appContext
   const targetCollection = useCollection("Category")
-  const allCategorysRef = useRef<SchemaResultMapper["Category"][]>([])
+  const allCategorysRef = useRef<CategoryGqlResult[]>([])
   useEffect( () => {
     (async () => {
       const catgorys = await targetCollection?.find()
@@ -17,14 +18,15 @@ export const AllowedCategoryList = ({list}: {list: string[]}) => {
     
   }, [targetCollection])
   return(
-
+    <table id="categoryTable">
     <tr>
       <th scope="row">Catgory</th>
       {
         allCategorysRef.current.map(
-          category => <td key={category._id.toHexString()}><b>{category.name}</b></td>
+          category => <td key={category._id}><b>{category.name}</b></td>
         )
       }
     </tr>
+    </table>
   )
 }

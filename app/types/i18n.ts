@@ -1,5 +1,5 @@
 import { defaultNS } from "#/lib/i18n/settings"
-import chAccountList from "#/locales/ch/account-list.json"
+import chAccountList from "#/locales/ch/accountList.json"
 import enCommon from "#/locales/en/common.json"
 const resources = {
   ch: {

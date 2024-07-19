@@ -11,27 +11,23 @@ export type CategorySchema = {
   name: string
   createdAt: Date
 }
+
 export type CategoryGqlQuery = Partial<
   Record<keyof CategorySchema, unknown>
-> & {
-  _id: string
-  name: string
-  description?: string
-}
+> 
 
 export type CategoryGqlInsert = CategorySchema
 
 export type CategoryGqlResult = Partial<
-  Record<keyof CategorySchema, unknown>
+  Record<keyof CategorySchema, string>
 > & {
   _id: string
 }
 /**
- * @param {CategorySchema} Derive from categorySchema
+ * @param {CategorySchema} Derive from CategorySchema
  */
 const categorySchemaObject: NormalSchemaObject<keyof CategorySchema> = {
   name: "Category",
-  // dataType: "selectList",
   properties: {
     _id: {
       name: "_id",

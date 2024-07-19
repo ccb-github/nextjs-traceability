@@ -58,9 +58,12 @@ export default function ModalQRCodeDialog(props: {
     
   }
   function downloadV2() {
-    var image = document.querySelector("img") // Image you want to save
-    var saveImg = document.createElement("a") // New link we use to save it with
-    saveImg.href = image.src // Assign image src to our link target
+    const image = document.querySelector("img") // Image you want to save
+    if(image === null) {
+      throw new Error("No image with id img found")
+    }
+    const saveImg = document.createElement("a") // New link we use to save it with
+    saveImg.href = image.src// Assign image src to our link target
     saveImg.download = "imagename.jpg" // set filename for download
     saveImg.innerHTML = "Click to save image" // Set link text
     document.body.appendChild(saveImg)

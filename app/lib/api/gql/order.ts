@@ -1,7 +1,7 @@
 import { getCookieByName } from "#/components/util/cookie"
-import { SchemaResultMapper } from "#/types/schema"
 import { gql } from "@apollo/client"
 import { createClient } from "../apolloClient"
+import { OrderSchema } from "#/lib/schema/def/order"
 
 export const QUERY_ORDERS = gql`
   query queryOrders {
@@ -57,7 +57,7 @@ export const INSERT_ORDER = gql`
 `
 
 export async function insertOrder(
-  insertData: Partial<SchemaResultMapper["Order"]>,
+  insertData: Partial<OrderSchema>,
 ) {
   try {
     const client = createClient(getCookieByName("accessToken")!)

@@ -2,10 +2,12 @@ import { gql } from "@apollo/client"
 import { getCookieByName } from "#/components/util/cookie"
 import { BSON } from "realm-web"
 import { createClient } from "#/lib/api/apolloClient"
-import { SchemaResultMapper } from "#/types/schema"
+import { EnterpriseSchema } from "#/lib/schema/def/enterprise"
+import { ProductSchema } from "#/lib/schema/def/product"
 
-export const QUERY_ENTERPRISES = gql`
-  query getAllEnterprises($query: EnterpriseQueryInput) {
+
+export const FIND_ENTERPRISES = gql`
+  query findEnterprises($query: EnterpriseQueryInput) {
     enterprises(query: $query) {
       _id
       name
@@ -18,8 +20,8 @@ export const QUERY_ENTERPRISES = gql`
   }
 `
 
-export async function queryEnterprises(
-  query?: Partial<Record<keyof SchemaResultMapper["Enterprise"], unknown>>,
+export async function findEnterprises(
+  query?: Partial<Record<keyof EnterpriseSchema, unknown>>,
 ) {
   "use server"
   try {
@@ -27,7 +29,7 @@ export async function queryEnterprises(
     const {
       data: { enterprises },
     } = await client.query({
-      query: QUERY_ENTERPRISES,
+      query: FIND_ENTERPRISES,
       variables: query,
     })
     return enterprises
@@ -37,8 +39,8 @@ export async function queryEnterprises(
   }
 }
 
-export const GET_ENTERPRISE_BY_ID = gql`
-  query getEnterpriseById($id: ObjectId) {
+export const FIND_ENTERPRISE_BY_ID = gql`
+  query findEnterpriseById($id: ObjectId) {
     enterprise(query: { _id: $id }) {
       _id
       name
@@ -62,12 +64,12 @@ export const UPDATE_ONE_ENTERPRISE = gql`
     }
   }
 `
-export async function updateEnterprise({
+export async function updateOneEnterprise({
   query,
   set,
 }: {
-  query: Partial<SchemaResultMapper["Enterprise"]>
-  set: Partial<SchemaResultMapper["Product"]>
+  query: Partial<EnterpriseSchema>
+  set: Partial<ProductSchema>
 }) {
   try {
     const client = createClient(getCookieByName("accessToken")!)
@@ -90,7 +92,7 @@ export async function updateEnterprise({
 export async function getEnterpriseById(id: string) {
   const client = createClient(getCookieByName("accessToken")!)
   const { data } = await client.query({
-    query: GET_ENTERPRISE_BY_ID,
+    query: FIND_ENTERPRISE_BY_ID,
     variables: { id: new BSON.ObjectId(id) },
   })
   console.log(`The data in the query function ${JSON.stringify(data)}`)

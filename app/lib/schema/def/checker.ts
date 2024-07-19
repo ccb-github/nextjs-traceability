@@ -8,6 +8,22 @@ export type CheckerSchema = {
   email: string
   name: string
 }
+
+export type CheckerGqlQuery = Partial<
+  Record<keyof CheckerSchema, unknown>
+> 
+
+/**
+ * @description Type for Checker data insert
+ */
+export type CheckerGqlInsert = CheckerSchema
+
+export type CheckerGqlResult = Partial<
+  Record<keyof CheckerSchema, unknown>
+> & {
+  _id: string
+}
+
 const CheckerSchemaObject: NormalSchemaObject<keyof CheckerSchema> = {
   name: "Checker",
   properties: {
@@ -52,5 +68,7 @@ const CheckerSchemaObject: NormalSchemaObject<keyof CheckerSchema> = {
   primaryKey: "_id",
   embedded: false,
 }
+
+
 
 export default CheckerSchemaObject

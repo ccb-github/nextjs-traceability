@@ -4,7 +4,7 @@ import { StringInputFieldTemplate } from "#/components/form/input/StringInputFie
 import { useTranslation } from "#/lib/i18n"
 import { BasePageProps } from "#/types/pageProp"
 import { BSON } from "realm-web"
-import { insertCategory } from "#/lib/api/gql/category"
+import { insertOneCategory } from "#/lib/api/gql/category"
 import categorySchemaObject from "#/lib/schema/def/category"
 
 export default async function Page({ params: { lng } }: BasePageProps) {
@@ -17,11 +17,11 @@ export default async function Page({ params: { lng } }: BasePageProps) {
     //   return
     // }
     console.log(data.get("selectHelper"))
-    const result = await insertCategory({
+    const result = await insertOneCategory({
       _id: new BSON.ObjectId(),
       name: data.get("name") as string,
       description: data.get("description") as string,
-      createdAt: new Date(data.get("createdAt") as unknown as Date),
+      createdAt: new Date(data.get("createdAt") as string),
     })
     console.log("Add result", result)
     return result
@@ -80,7 +80,7 @@ export default async function Page({ params: { lng } }: BasePageProps) {
         name={t("createAt")}
       />
       <div className="form-group col-span-1 lg:col-span-2">
-        <button type="submit">Submit</button>
+        <button type="submit">{t("Submit")}</button>
       </div>
     </form>
   )
