@@ -1,7 +1,8 @@
 'use client'
 import { useTranslation } from "#/lib/i18n/client"
+import { CheckerSchema } from "#/lib/schema/def/checker"
 
-export default function CheckerItem({lng, item}: {lng: string, item: any}){
+export default function CheckerItem({lng, item}: {lng: string, item: CheckerSchema}){
     const {t} = useTranslation(lng)
     
     return (

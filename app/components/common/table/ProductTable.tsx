@@ -35,8 +35,9 @@ export default function ProductTable({ data, lng }: ProductReactTableProps) {
   const schemaPropertiesRef = useRef(productSchemaJson.properties)
   const realmApp = useApp()
   const router = useRouter()
-  const editLink = `/${lng}/${Object.keys(roleUrlMap).some((v) => v === realmApp.currentUser?.customData.role) ?
-      realmApp.currentUser?.customData.role : "share"
+  const editLink = `/${lng}/${
+      roleUrlMap[Object.keys(roleUrlMap).some((v) => v === realmApp.currentUser?.customData.role) ?
+      realmApp.currentUser?.customData.role : "share"]
     }/edit/product`
 
   return (

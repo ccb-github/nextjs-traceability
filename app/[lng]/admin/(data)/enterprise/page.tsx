@@ -1,7 +1,6 @@
 import SchemaDataReactTable from "#/components/common/SchemaDataReactTable"
 import { queryEnterprises } from "#/lib/api/gql/enterprise"
 import enterpriseSchemaJson, { EnterpriseSchema } from "#/lib/schema/def/enterprise"
-import productSchemaJson from "#/lib/schema/def/product"
 import { BasePageProps } from "#/types/pageProp"
 
 

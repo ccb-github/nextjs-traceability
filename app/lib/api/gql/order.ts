@@ -1,5 +1,5 @@
 import { getCookieByName } from "#/components/util/cookie"
-import { SchemaResultMapper } from "#/types/schema"
+
 import { gql } from "@apollo/client"
 import { createClient } from "../apolloClient"
 

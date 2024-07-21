@@ -1,7 +1,4 @@
 "use client"
-
-import { normalSchemaJson } from "#/lib/schema"
-
 import React, { useMemo } from "react"
 
 import { FaReacteurope } from "react-icons/fa"
@@ -20,30 +17,37 @@ import {
   useReactTable,
 } from "@tanstack/react-table"
 import { NormalSchemaName, SchemaDataPropType, URL_TO_SCHEMANAME } from "#/lib/schema/format"
+import { normalSchemaMap } from "#/lib/schema"
 
-/* type BaseFilterProps<DataItem> = {
+/**
+ *  
+type BaseFilterProps<DataItem> = {
   setFilter: (newFilter: unknown) => unknown
   preFilteredRows: Row<DataItem>[]
   id: string
 }
  */
-// function DefaultColumnFilter({
-//   column: { filterValue, preFilteredRows, setFilter },
-// }: {
-//   column: BaseFilterProps
-// }) {
-//   const count = preFilteredRows.length
-//   return (
-//     <input
-//       className="max-w-full"
-//       value={filterValue || ""}
-//       onChange={(e) => {
-//         setFilter(e.target.value || undefined) // Set undefined to remove the filter entirely
-//       }}
-//       placeholder={`Search ${count} records...`}
-//     />
-//   )
-// }
+
+/**  
+ * 
+    function DefaultColumnFilter({
+      column: { filterValue, preFilteredRows, setFilter },
+    }: {
+      column: BaseFilterProps
+    }) {
+      const count = preFilteredRows.length
+      return (
+        <input
+          className="max-w-full"
+          value={filterValue || ""}
+          onChange={(e) => {
+            setFilter(e.target.value || undefined) // Set undefined to remove the filter entirely
+          }}
+          placeholder={`Search ${count} records...`}
+        />
+      )
+    }
+ */
 
 type TableOperation = {
   type: "delete" | "update" | "insert"
@@ -58,7 +62,7 @@ type RequiredTableColumnOption<DataItem> = {
  * @member {string} trClass the css class for tr
  */
 type ReactTableProps<
-  DataItem extends { _id: string },
+  DataItem extends { _id: unknown},
   PrimaryKeyType = string,
 > = {
   data: DataItem[]
@@ -90,7 +94,7 @@ export default function SchemaDataReactTable<DataItem extends { _id: unknown}>({
   //TODO the language props
   const { t } = useTranslation(lng, schemaType.toLowerCase())
   const schemaProperties = useMemo(
-    () => normalSchemaJson[schemaType].properties,
+    () => normalSchemaMap[schemaType].properties,
     [schemaType],
   )
   const currentPath = usePathname()
@@ -262,8 +266,11 @@ export default function SchemaDataReactTable<DataItem extends { _id: unknown}>({
                       <EditIcon className="inline-block w-4 h-4" />
                     </Link>
                   </Button> */}
-                  {typeof customColumn === "function" &&
-                    customColumn(row.original["_id"])}
+                  {
+                    typeof customColumn === "function" &&
+                      customColumn(typeof row.original["_id"] === "string" ?
+                      row.original["_id"] : (row.original["_id"] as Object).toString())
+                  }
                 </th>
               </tr>
             )

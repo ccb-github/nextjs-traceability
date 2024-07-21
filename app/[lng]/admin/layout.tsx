@@ -47,6 +47,7 @@ export default async function AdminRootLayout({
 
             <h3 className="font-semibold tracking-wide text-gray-400 group-hover:text-gray-50">
               {t("Admin")}
+             
             </h3>
           </Link>
         </div>

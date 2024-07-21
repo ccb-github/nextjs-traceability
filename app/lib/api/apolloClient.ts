@@ -15,9 +15,9 @@ export const createClient = (token: string) => {
     link: new HttpLink({
       uri: process.env.NEXT_PUBLIC_GRAPHQL_API_ENDPOINT,
       headers: {
-        //Authorization: `Bearer ${accessToken}`,
-        apiKey:
-          "iVVHV8u9cUVQU776WAt331CNu0TSFxmjjIeyRQnbm9JJtPwWR46CMvf1AJQaAAyA",
+        Authorization: `Bearer ${accessToken}`,
+        // apiKey:
+        //   "iVVHV8u9cUVQU776WAt331CNu0TSFxmjjIeyRQnbm9JJtPwWR46CMvf1AJQaAAyA",
       },
     }),
     cache: new InMemoryCache(),

@@ -1,5 +1,5 @@
-import { normalSchemaJson } from "#/lib/schema";
 import { NormalSchemaName, NormalSchemaObject, SchemaName } from "#/lib/schema/format";
+import { normalSchemaMap } from "../schema";
 
 if(process.env.NEXT_PUBLIC_MONGODB_ATLA_DATABASE === undefined) {
   console.log(process.env)
@@ -45,27 +45,28 @@ export async function getData(realmUser: Realm.User, schemaName: SchemaName,filt
  * @param filter 
  * @returns 
  */
-export async function getUser(realmUser: Realm.User, filter?: Realm.Services.MongoDB.Filter): Promise<any | null> {
+export async function getUser(
+  realmUser: Realm.User,
+  filter?: Realm.Services.MongoDB.Filter,
+) {
   const collection = realmUser
     .mongoClient('mongodb-atlas')
     .db(DB_NAME!)
-    .collection('User')
-  const results = await collection.findOne(
-    filter
-  );
-  if (results) {
-    return results
+    .collection("User")
+  const result: unknown = await collection.findOne(filter)
+  if (result) {
+    return result
   } else {
     return null;
   }
 }
 
-export async function insertDataToCol(
+export async function insertDataToCollection(
   user: Realm.User,
   name: NormalSchemaName,
   insertDoc: Realm.Services.MongoDB.NewDocument< NormalSchemaObject["properties"] >,
 ){
-  typeof normalSchemaJson[name].properties 
+  typeof normalSchemaMap[name].properties 
   const insertCollection = user
     ?.mongoClient('mongodb-atlas')
     .db(DB_NAME!)
@@ -82,7 +83,7 @@ export async function updateCollection(
   user: Realm.User,
   name: SchemaName,
   filter: Realm.Services.MongoDB.Filter,
-  updateDoc: any,
+  updateDoc: Realm.Services.MongoDB.NewDocument< NormalSchemaObject["properties"] >,
 ) {
   const updateCollection = user
     ?.mongoClient('mongodb-atlas')

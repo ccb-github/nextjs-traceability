@@ -1,5 +1,4 @@
 "use client"
-import { normalSchemaMap } from "#/lib/schema"
 import React, { useRef } from "react"
 import { FaReacteurope } from "react-icons/fa"
 import { useTranslation } from "#/lib/i18n/client"
@@ -15,8 +14,8 @@ import { type GeneralDataTableWrapperProps } from "#/types/table"
 import regulatorySchemaObject, { RegulatorySchema } from "#/lib/schema/def/regulatory"
 
 type RegulatoryReactTableProps = GeneralDataTableWrapperProps<
-  Partial<Record<keyof RegulatorySchema, string>> & {
-    _id: string
+  Partial<RegulatorySchema> & {
+    _id: unknown  
   }
 >
 

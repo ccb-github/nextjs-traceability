@@ -1,4 +1,3 @@
-import SchemaDataReactTable from "#/components/common/SchemaDataReactTable"
 import CheckRecordTable from "#/components/common/table/CheckRecordTable"
 import { queryCheckRecords } from "#/lib/api/gql/checkRecord"
 import { BasePageProps } from "#/types/pageProp"
