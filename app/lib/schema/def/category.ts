@@ -3,7 +3,8 @@ import { NormalSchemaObject } from "#/lib/schema/format"
 
 /**
  * @description The data model of category collection
- * category stands for the category of the product
+ * category stands for the category of the 
+ * {@link import("./product.ts")}
  */
 export type CategorySchema = {
   _id: BSON.ObjectID
@@ -24,7 +25,7 @@ export type CategoryGqlResult = Partial<
   _id: string
 }
 /**
- * @param {CategorySchema} Derive from CategorySchema
+ * @type {NormalSchemaObject} Template  Instanize with {@link CategorySchema}
  */
 const categorySchemaObject: NormalSchemaObject<keyof CategorySchema> = {
   name: "Category",

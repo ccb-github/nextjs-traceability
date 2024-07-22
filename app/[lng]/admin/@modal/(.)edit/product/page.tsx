@@ -3,7 +3,11 @@ import { templateHTML } from "#/components/form/templateHTML"
 import { queryProductById, updateProducts } from "#/lib/api/gql/product"
 
 import { useTranslation } from "#/lib/i18n"
+<<<<<<< HEAD
 import { SchemaTypeMapper, normalSchemaMap } from "#/lib/schema"
+=======
+import { SchemaTypeMapper, normalSchemaJson } from "#/lib/schema"
+>>>>>>> fd8d35f3a9f656513095d6af13bcf3b01b67657a
 import { ProductSchema } from "#/lib/schema/def/product"
 import { BasePageProps } from "#/types/pageProp"
 import Script from "next/script"
@@ -14,7 +18,11 @@ export default async function ProductEditPage({
   searchParams,
 }: BasePageProps) {
   console.log("This Product editpage ([admin/@modal/.edit/product) is rendered")
+<<<<<<< HEAD
   const schemaObj = normalSchemaMap["Product"]
+=======
+  const schemaObj = normalSchemaJson["Product"]
+>>>>>>> fd8d35f3a9f656513095d6af13bcf3b01b67657a
   const { id } = searchParams
   const { t } = await useTranslation(lng)
   const { product } = await queryProductById({

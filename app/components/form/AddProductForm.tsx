@@ -2,7 +2,11 @@
 import { useApp } from "#/hooks/useApp"
 import { insertDataToCol } from "#/lib/api/mongoService"
 import fieldConvert from "#/lib/fieldConvert"
+<<<<<<< HEAD
 import { normalSchemaMap } from "#/lib/schema"
+=======
+import { normalSchemaJson } from "#/lib/schema"
+>>>>>>> fd8d35f3a9f656513095d6af13bcf3b01b67657a
 import { useRef, FormEvent } from "react"
 import { BSON } from "realm-web"
 
@@ -25,7 +29,11 @@ export function AddProductForm() {
           enumerable: true,
           value: fieldConvert(
             item[1],
+<<<<<<< HEAD
             normalSchemaMap["Product"].properties[item[0]].type,
+=======
+            normalSchemaJson["Product"].properties[item[0]].type,
+>>>>>>> fd8d35f3a9f656513095d6af13bcf3b01b67657a
           ),
         })
       }

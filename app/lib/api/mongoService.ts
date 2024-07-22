@@ -5,18 +5,22 @@ import { UserProfile } from "#/types/data"
 if (process.env.NEXT_PUBLIC_MONGODB_ATLAS_DATABASE === undefined) {
   console.log(process.env)
   throw Error("Missing env variable MONGODB_ATLAS_DATABASE")
+  throw Error("Missing env variable MONGODB_ATLAS_DATABASE")
 }
 const DB_NAME = process.env.NEXT_PUBLIC_MONGODB_ATLAS_DATABASE
+
 
 export async function getUsers(
   realmUser: Realm.User,
   filter?: Realm.Services.MongoDB.Filter,
 ): Promise<UserProfile[]> {
   const collection = realmUser
-    .mongoClient("mongodb-atlas")
+    .mongoClient("mongodb-atlas")  
     .db(DB_NAME!)
     .collection("User")
+
   const results = await collection.find(filter)
+    
   if (results) {
     return results
   } else {
@@ -45,6 +49,10 @@ export async function getData(
  * @param realmUser: The realm user which do the operation
  * @param filter
  * @returns
+ *
+ * @param realmUser: The realm user which do the operation
+ * @param filter
+ * @returns
  */
 export async function getUser(
   realmUser: Realm.User,
@@ -54,10 +62,12 @@ export async function getUser(
     .mongoClient("mongodb-atlas")
     .db(DB_NAME!)
     .collection("User")
+
   const results = await collection.findOne(filter)
   if (results) {
     return results
   } else {
+    return null
     return null
   }
 }

@@ -1,6 +1,5 @@
 import DateInputFieldTemplate from "#/components/common/input/DateInputFieldTemplate"
 import { StringInputFieldTemplate } from "#/components/form/input/StringInputFieldTemplate"
-
 import { useTranslation } from "#/lib/i18n"
 import { BasePageProps } from "#/types/pageProp"
 import { BSON } from "realm-web"
@@ -53,17 +52,34 @@ export default async function Page({ params: { lng } }: BasePageProps) {
             loadFunction={queryProducts}
             selectName={"products"}
             asyncLoadOptions={async () => {
+
+      {/*<div className="form-group">
+        <div className="w-full p-4">
+          <label className=" control-label" htmlFor="">
+            {"products"}
+          </label>
+          <TypeSpan text="related-item" className="float-right" />
+        </div>
+        <div className=" w-full">
+          <AsyncSelect
+            loadFunction={queryProducts}
+            selectName={"products"}
+            asyncLoadOptions={async () => {
               "use server"
+              const products = await queryProducts()
+              return products.map((product: { _id: string }) => ({
               const products = await queryProducts()
               return products.map((product: { _id: string }) => ({
                 label: product._id,
                 value: product._id,
+                color: "blue",
                 color: "blue",
               }))
             }}
           />
         </div>
       </div> */}
+           
       <StringInputFieldTemplate
         {...categorySchemaObject.properties["name"]}
         name={t("name", { ns: "category" })}

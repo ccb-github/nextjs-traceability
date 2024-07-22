@@ -6,6 +6,9 @@ interface PagePropsWithTypeParams extends BasePageProps {
   params: {
     type: string
     lng: string
+  params: {
+    type: string
+    lng: string
   }
 }
 export default function AdminInsertEnterprisePage({
@@ -21,3 +24,4 @@ export default function AdminInsertEnterprisePage({
     />
   )
 }
+

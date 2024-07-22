@@ -22,7 +22,7 @@ export type OrderGqlResult = Partial<
   _id: string
 }
 
-const OrderObject: NormalSchemaObject<keyof OrderSchema> = {
+const OrderSchemaObject: NormalSchemaObject<keyof OrderSchema> = {
   name: "Order",
   properties: {
     _id: {
@@ -74,4 +74,4 @@ const OrderObject: NormalSchemaObject<keyof OrderSchema> = {
   embedded: false,
 }
 
-export default OrderObject
+export default OrderSchemaObject

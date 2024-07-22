@@ -1,6 +1,10 @@
 import { CommonLayoutProps } from "#/types/pageProp"
 
+<<<<<<< HEAD
 import AccountFooter from "#/components/normal/AccountInfoHeader"
+=======
+import AccountFooter from "#/components/normal/AccountFooter"
+>>>>>>> fd8d35f3a9f656513095d6af13bcf3b01b67657a
 import BreadCrumb from "#/components/common/BreadCrumb"
 import TopTabBar from "#/components/common/TopTabBar"
 import SideNavItem from "#/components/common/SideNavItem"

@@ -2,7 +2,11 @@ StringInputFieldTemplate
 import Button from "#/components/common/Button"
 import { StringInputFieldTemplate } from "#/components/form/input/StringInputFieldTemplate"
 import { getAllRegulatory, updateRegulatories } from "#/lib/api/gql/regulatory"
+<<<<<<< HEAD
 import { normalSchemaMap } from "#/lib/schema"
+=======
+import { normalSchemaJson } from "#/lib/schema"
+>>>>>>> fd8d35f3a9f656513095d6af13bcf3b01b67657a
 import { BasePageProps } from "#/types/pageProp"
 import Script from "next/script"
 
@@ -12,7 +16,11 @@ export default async function AdminRegulatoryEditPage({
   searchParams,
 }: BasePageProps) {
   console.log("This Product editpage (.) is rendered")
+<<<<<<< HEAD
   const schemaObj = normalSchemaMap["Regulatory"]
+=======
+  const schemaObj = normalSchemaJson["Regulatory"]
+>>>>>>> fd8d35f3a9f656513095d6af13bcf3b01b67657a
   const { id } = searchParams
   const { regulatories } = await getAllRegulatory({
     query: { _id: new BSON.ObjectId(id as string) },

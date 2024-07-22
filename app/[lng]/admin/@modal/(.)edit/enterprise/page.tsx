@@ -1,9 +1,8 @@
 import Button from "#/components/common/Button"
-
 import { templateHTML } from "#/components/form/templateHTML"
-
 import { getEnterpriseById, updateOneEnterprise } from "#/lib/api/gql/enterprise"
 import { normalSchemaMap } from "#/lib/schema"
+import enterpriseSchemaObject from "#/lib/schema/def/enterprise"
 import { BasePageProps } from "#/types/pageProp"
 import Script from "next/script"
 import { BSON } from "realm-web"
@@ -54,10 +53,10 @@ export default async function EnterpriseEditPage({
             h-full overflow-y-scroll pt-2
         `}
         >
-          {Object.keys(schemaObj.properties).map((e) =>
+          {Object.values(enterpriseSchemaObject.properties).map((enterpriseProptery) =>
             templateHTML({
-              ...schemaObj.properties[e],
-              defaultValue: enterprise[e],
+              ...enterpriseProptery,
+              defaultValue: enterpriseProptery.defaultValue,
             }),
           )}
 

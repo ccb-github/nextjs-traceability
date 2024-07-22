@@ -1,12 +1,6 @@
 'use client';
-
 import React from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-//import { useTranslation } from '#/lib/i18n/client';
-
-import { useApp } from '#/hooks/useApp';
-import { useTranslation } from '#/lib/i18n/client';
-
 
 export default function BreadCrumb({ className, lng }: {className?: string, lng: string}) {
   const pathname = usePathname();

@@ -13,7 +13,7 @@ import SchemaDataReactTable from "../SchemaDataReactTable"
 import { useApp } from "#/hooks/useApp"
 import { useRouter } from "next/navigation"
 import { type GeneralDataTableWrapperProps } from "#/types/table"
-import { CategorySchema } from "#/lib/schema/def/category"
+import categorySchemaObject, { CategorySchema } from "#/lib/schema/def/category"
 
 type CategoryReactTableProps = GeneralDataTableWrapperProps<
   Partial<Record<keyof CategorySchema, string>> & {
@@ -28,7 +28,9 @@ type CategoryReactTableProps = GeneralDataTableWrapperProps<
 export default function CategoryTable({ data, lng }: CategoryReactTableProps) {
   const { t } = useTranslation(lng, "enterprise")
 
-  const schemaPropertiesRef = useRef(normalSchemaMap["Category"].properties)
+
+  const schemaPropertiesRef = useRef(categorySchemaObject.properties)
+
   const realmApp = useApp()
   const router = useRouter()
   const editLink = `/${lng}/${
@@ -79,7 +81,9 @@ export default function CategoryTable({ data, lng }: CategoryReactTableProps) {
           </>
         )
       }}
-      columnOptions={Object.values(normalSchemaMap["Category"].properties).map(
+
+      columnOptions={Object.values(categorySchemaObject.properties).map(
+
         (prop) => ({
           accessor: prop.mapTo as keyof CategorySchema,
           header: t(prop.mapTo),

@@ -1,9 +1,6 @@
 "use client"
-
 import { normalSchemaMap } from "#/lib/schema"
-
 import React, { useMemo } from "react"
-
 import { FaReacteurope } from "react-icons/fa"
 import Button from "./Button"
 import SearchBar from "./SearchBar"
@@ -58,7 +55,7 @@ type RequiredTableColumnOption<DataItem> = {
  * @member {string} trClass the css class for tr
  */
 type ReactTableProps<
-  DataItem extends { _id: string },
+  DataItem extends { _id: unknown },
   PrimaryKeyType = string,
 > = {
   data: DataItem[]
@@ -261,9 +258,12 @@ export default function SchemaDataReactTable<DataItem extends { _id: unknown}>({
                       {t("Edit", "common")}
                       <EditIcon className="inline-block w-4 h-4" />
                     </Link>
-                  </Button> */}
-                  {typeof customColumn === "function" &&
-                    customColumn(row.original["_id"])}
+                  </Button> */} {
+                    typeof customColumn === "function" &&
+                      customColumn(typeof row.original["_id"] === "string" ?
+                      row.original["_id"] : (row.original["_id"] as Object).toString())
+                  }
+
                 </th>
               </tr>
             )

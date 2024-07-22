@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { normalSchemaMap } from "#/lib/schema"
+=======
+import { normalSchemaJson } from "#/lib/schema"
+>>>>>>> fd8d35f3a9f656513095d6af13bcf3b01b67657a
 import Button from "#/components/common/Button"
 import AsyncSelect from "#/components/common/AsyncSelect"
 import { StringInputFieldTemplate } from "#/components/form/input/StringInputFieldTemplate"
@@ -13,7 +17,11 @@ import { insertOrder } from "#/lib/api/gql/order"
 // )
 
 export default async function Page() {
+<<<<<<< HEAD
   const schemaObj = normalSchemaMap.Order
+=======
+  const schemaObj = normalSchemaJson.Order
+>>>>>>> fd8d35f3a9f656513095d6af13bcf3b01b67657a
 
   const loadOrderOptions = async () => {
     "use server"

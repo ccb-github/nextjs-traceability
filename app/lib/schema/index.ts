@@ -7,14 +7,14 @@ import regulatorySchemaObject, {
 } from "#/lib/schema/def/regulatory"
 import checkRecordSchemaObject from "#/lib/schema/def/checkRecord"
 import stockSchemaObject from "#/lib/schema/def/stock"
-import OrderObject, { OrderSchema } from "#/lib/schema/def/order"
+import OrderSchemaObject, { OrderSchema } from "#/lib/schema/def/order"
 
 import type {
   EmbedSchemaObject,
   EmbeddedSchemaName,
   NormalSchemaName,
   NormalSchemaObject,
-} from "./format"
+} from "#/lib/schema/format"
 
 export type NormalSchemaMap = {
   [key in NormalSchemaName]: NormalSchemaObject
@@ -25,12 +25,12 @@ export type EmbeddedSchemaMap = {
 
 export const normalSchemaMap: NormalSchemaMap = {
   Category: categorySchemaObject,
-  Checker: CheckerSchemaObject,
+  Checker: checkRecordSchemaObject,
   CheckRecord: checkRecordSchemaObject,
   Enterprise: enterpriseSchemaObject,
   Product: productSchemaObject,
   Regulatory: regulatorySchemaObject,
-  Order: OrderObject,
+  Order: OrderSchemaObject,
   Stock: stockSchemaObject,
 
 }

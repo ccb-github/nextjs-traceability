@@ -3,8 +3,11 @@ import React, { useState, useEffect } from "react"
 import { useApp } from "#/hooks/useApp"
 import { BSON } from "realm-web"
 import SchemaDataReactTable from "./SchemaDataReactTable"
+import { normalSchemaMap } from "#/lib/schema"
 import { ProductSchema } from "#/lib/schema/def/product"
 import { URL_TO_SCHEMANAME } from "#/lib/schema/format"
+import { useTranslation } from "#/lib/i18n/client"
+
 
 
 type X = typeof URL_TO_SCHEMANAME
@@ -40,6 +43,8 @@ export default function MongodbList({
   const [sortOption] = useState(sortOptionProps || {})
   const [datas, setDatas] = useState<ProductSchema[]>([])
   const mongodbApp = useApp()
+  const { t } = useTranslation(lng)
+  
   useEffect(() => {
     if (mongodbApp?.currentUser) {
       const mongoClient = mongodbApp.currentUser?.mongoClient("mongodb-atlas")
@@ -78,6 +83,13 @@ export default function MongodbList({
         data={datas}
         lng={lng}
         schemaType={schemaType}
+        columnOptions={Object.values(normalSchemaMap[schemaType].properties).map(
+          (prop) => ({
+            accessor: prop.mapTo as keyof ProductSchema,
+            header: t(prop.mapTo),
+            type: prop.dataType,
+          }),
+        )}
         deleteEnabled={false}
       />
     </div>

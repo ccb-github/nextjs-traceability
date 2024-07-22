@@ -68,7 +68,11 @@ export interface EmbedSchemaObject<SchemaPropKey extends string> {
     [PropKey in SchemaPropKey]: SchemaProperty
   }
 }
+<<<<<<< HEAD
 export type NormalSchemaObject<SchemaPropKey extends string = "_id"> = {
+=======
+export interface NormalSchemaObject<SchemaPropKey extends string = "_id"> {
+>>>>>>> fd8d35f3a9f656513095d6af13bcf3b01b67657a
   name: NormalSchemaName
   primaryKey: string
   embedded: false
