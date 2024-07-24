@@ -1,6 +1,7 @@
 import Button from "#/components/common/Button"
 import { templateHTML } from "#/components/form/templateHTML"
 import { getEnterpriseById, updateOneEnterprise } from "#/lib/api/gql/enterprise"
+import { useTranslation } from "#/lib/i18n"
 import { normalSchemaMap } from "#/lib/schema"
 import enterpriseSchemaObject from "#/lib/schema/def/enterprise"
 import { BasePageProps } from "#/types/pageProp"
@@ -9,27 +10,37 @@ import { BSON } from "realm-web"
  
 //TODO optimize layout grid cell max size
 export default async function EnterpriseEditPage({
+  params:{
+    lng
+  },
   searchParams,
 }: BasePageProps) {
-  const schemaObj = normalSchemaMap["Enterprise"]
 
   const { id } = searchParams
-  const { enterprise } = await getEnterpriseById(id as string)
+  const { t } = await useTranslation(lng)
+
   async function editEnterpriseSubmit(editedEnterpriseData: FormData) {
+    "use server"
     console.log(
       `The setdata in enterprise form ${editedEnterpriseData.entries()}`
     )
     const setData = {
-      address: editedEnterpriseData.get("address"),
-      creditCode: editedEnterpriseData.get("creditCode"),
+      address: editedEnterpriseData.get("address") as string,
+      creditCode: editedEnterpriseData.get("creditCode") as string,
       createdAt: editedEnterpriseData.get("createdAt")
         ? new Date(editedEnterpriseData.get("createdAt") as string)
         : undefined,
+      description: editedEnterpriseData.get("description") as string,
+      email:  editedEnterpriseData.get("email") as string,
+        // name?: string
+        // registerPlace: string
+        // tradeMark?: string
+
     }
     try {
       const result = await updateOneEnterprise({
         query: { _id: new BSON.ObjectId(id as string) },
-        set: setData,
+        set: setData
       })
       console.log(
         `The update result for enterprise with id ${id} ${JSON.stringify(
@@ -63,7 +74,7 @@ export default async function EnterpriseEditPage({
           {/* <RelatedItemDialog itemType='Product'/> */}
           <div className="form-group lg:col-span-2">
             <Button type="reset" className="m-2">
-              Reset
+              {t("Reset")}
             </Button>
             {/* <Button type="reset" className="m-2">
               Save

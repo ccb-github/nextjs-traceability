@@ -66,26 +66,6 @@ export default function SideNavItem({
             <FaChevronCircleDown className="self-center mr-2" />
           )}
           {text}
-          <svg
-            className="with-icon_icon__MHUeb"
-            data-testid="geist-icon"
-            fill="none"
-            height="24"
-            shape-rendering="geometricPrecision"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="1.5"
-            viewBox="0 0 24 24"
-            width="24"
-            style={{
-              color:"whitesmoke",
-              width:16,height:16,
-              transform : `rotate(${isOpen? 0.25: 0}turn)`
-            }}
-          >
-            <path d="M9 18l6-6-6-6"></path>
-          </svg>
         </a>
       )}
       {/* If the item contain subitems and the tree menu node is open, render the child menu */}

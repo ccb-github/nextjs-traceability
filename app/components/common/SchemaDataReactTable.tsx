@@ -6,7 +6,7 @@ import Button from "./Button"
 import SearchBar from "./SearchBar"
 import { useTranslation } from "#/lib/i18n/client"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { CustomRender } from "#/lib/reactTable/render"
 import {
   Column,
@@ -17,6 +17,11 @@ import {
   useReactTable,
 } from "@tanstack/react-table"
 import { NormalSchemaName, SchemaDataPropType, URL_TO_SCHEMANAME } from "#/lib/schema/format"
+import { roleUrlMap } from "#/lib/webcontents/user"
+import { useApp } from "#/hooks/useApp"
+import { deleteDocuments } from "#/lib/api/mongoService"
+import fieldConvert from "#/lib/fieldConvert"
+import EditIcon from "../icons/edit"
 
 /* type BaseFilterProps<DataItem> = {
   setFilter: (newFilter: unknown) => unknown
@@ -90,7 +95,9 @@ export default function SchemaDataReactTable<DataItem extends { _id: unknown}>({
     () => normalSchemaMap[schemaType].properties,
     [schemaType],
   )
+  const router = useRouter()
   const currentPath = usePathname()
+  const realmApp = useApp()
   /**
    * The column definition array with shape like
    * @type {DataItem}
@@ -223,7 +230,7 @@ export default function SchemaDataReactTable<DataItem extends { _id: unknown}>({
                   </td>
                 ))}
                 <th scope="row" className="space-x-2 h-8">
-                  {/*   <Button
+                  <Button
                     className="m-auto"
                     dataId={(row.original as { _id: string })._id}
                     onClick={(event) => {
@@ -242,7 +249,6 @@ export default function SchemaDataReactTable<DataItem extends { _id: unknown}>({
                           throw error
                         })
                     }}
-                    disabled={!deleteEnabled}
                   >
                     {t("Delete")}
                     <FaReacteurope className="inline-block w-4 h-4" />
@@ -250,7 +256,7 @@ export default function SchemaDataReactTable<DataItem extends { _id: unknown}>({
                   <Button className="m-auto">
                     <Link
                       href={`/${lng}/${
-                        roleUrlMap[realmApp.currentUser?.customData.role]
+                        roleUrlMap[realmApp.currentUser?.customData.role as keyof typeof roleUrlMap]
                       }/edit/${schemaType.toLowerCase()}?id=${
                         row.original["_id"]
                       }`}
@@ -258,7 +264,7 @@ export default function SchemaDataReactTable<DataItem extends { _id: unknown}>({
                       {t("Edit", "common")}
                       <EditIcon className="inline-block w-4 h-4" />
                     </Link>
-                  </Button> */} {
+                  </Button> {
                     typeof customColumn === "function" &&
                       customColumn(typeof row.original["_id"] === "string" ?
                       row.original["_id"] : (row.original["_id"] as Object).toString())

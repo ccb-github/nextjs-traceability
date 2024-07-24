@@ -48,14 +48,16 @@ export default function EnterpriseTable({
       lng={lng}
       data={data}
       schemaType={"Enterprise"}
+      className={"flex flex-column"}
       deleteEnabled={true}
       columnOptions={
         Object.values(enterpriseSchemaObject.properties).map(
-        (prop) => ({
-          accessor: prop.mapTo as keyof EnterpriseSchema,
-          header: t(prop.mapTo),
-          type: prop.dataType,
-        }))
+          (prop) => ({
+            accessor: prop.mapTo as keyof EnterpriseSchema,
+            header: t(prop.mapTo),
+            type: prop.dataType,
+          })
+        )
       }
       customColumn={() => {
         return (
@@ -79,7 +81,7 @@ export default function EnterpriseTable({
                   })
               }}
             >
-              {t("Delete", "common")}
+              {t("Delete")}
               <FaReacteurope className="inline-block w-4 h-4" />
             </Button>
             <span className="m-auto">

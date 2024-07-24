@@ -69,10 +69,7 @@ td {
 
 table {
   
-  max-width: 100vw;
-  height: 500px; 
-  margin: 0 auto;
-  display: block;
+  margin: 0 auto; 
   overflow-x: auto;
   border-radius: 2rem;
   border-spacing: 0;
@@ -94,6 +91,11 @@ thead th {
   top: 0;
   background: #fff;
   vertical-align: bottom;
+}
+
+/* Zebra stripping*/
+tbody tr:nth-child(odd) {
+  background: #eee;
 }
 
 /* Table stick style disabled
