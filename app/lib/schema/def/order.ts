@@ -1,6 +1,7 @@
-import { BSON } from "realm-web"
-import { ProductSchema } from "#/lib/schema/def/product"
-import { NormalSchemaObject } from "#/lib/schema/format"
+import { type BSON } from "realm-web"
+import { type ProductSchema } from "#/lib/schema/def/product"
+import { type NormalSchemaObject } from "#/lib/schema/format"
+
 export type OrderSchema = {
   _id: BSON.ObjectID
   customerId: string
@@ -9,7 +10,19 @@ export type OrderSchema = {
   paymentMethod: string
   products: Array<ProductSchema>
 }
-const OrderObject: NormalSchemaObject<keyof OrderSchema> = {
+
+/**
+ * @description Type for Order data insert
+ */
+export type OrderGqlInsert = OrderSchema
+
+export type OrderGqlResult = Partial<
+  Record<keyof OrderSchema, unknown>
+> & {
+  _id: string
+}
+
+const OrderSchemaObject: NormalSchemaObject<keyof OrderSchema> = {
   name: "Order",
   properties: {
     _id: {
@@ -61,4 +74,4 @@ const OrderObject: NormalSchemaObject<keyof OrderSchema> = {
   embedded: false,
 }
 
-export default OrderObject
+export default OrderSchemaObject

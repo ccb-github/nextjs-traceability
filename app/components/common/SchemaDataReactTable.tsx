@@ -6,7 +6,7 @@ import Button from "./Button"
 import SearchBar from "./SearchBar"
 import { useTranslation } from "#/lib/i18n/client"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { CustomRender } from "#/lib/reactTable/render"
 import {
   Column,
@@ -17,6 +17,11 @@ import {
   useReactTable,
 } from "@tanstack/react-table"
 import { NormalSchemaName, SchemaDataPropType, URL_TO_SCHEMANAME } from "#/lib/schema/format"
+import { roleUrlMap } from "#/lib/webcontents/user"
+import { useApp } from "#/hooks/useApp"
+import { deleteDocuments } from "#/lib/api/mongoService"
+import fieldConvert from "#/lib/fieldConvert"
+import EditIcon from "../icons/edit"
 import { normalSchemaMap } from "#/lib/schema"
 
 /**
@@ -97,7 +102,9 @@ export default function SchemaDataReactTable<DataItem extends { _id: unknown}>({
     () => normalSchemaMap[schemaType].properties,
     [schemaType],
   )
+  const router = useRouter()
   const currentPath = usePathname()
+  const realmApp = useApp()
   /**
    * The column definition array with shape
    *
@@ -230,42 +237,6 @@ export default function SchemaDataReactTable<DataItem extends { _id: unknown}>({
                   </td>
                 ))}
                 <th scope="row" className="space-x-2 h-8">
-                  {/*   <Button
-                    className="m-auto"
-                    dataId={(row.original as { _id: string })._id}
-                    onClick={(event) => {
-                      const self: HTMLButtonElement =
-                        event.currentTarget as HTMLButtonElement
-                      deleteDocuments(realmApp.currentUser!, schemaType, {
-                        _id: fieldConvert(
-                          self.dataset.id!,
-                          schemaProperties["_id"].dataType,
-                        ),
-                      })
-                        .then(() => {
-                          router.refresh()
-                        })
-                        .catch((error) => {
-                          throw error
-                        })
-                    }}
-                    disabled={!deleteEnabled}
-                  >
-                    {t("Delete")}
-                    <FaReacteurope className="inline-block w-4 h-4" />
-                  </Button>
-                  <Button className="m-auto">
-                    <Link
-                      href={`/${lng}/${
-                        roleUrlMap[realmApp.currentUser?.customData.role]
-                      }/edit/${schemaType.toLowerCase()}?id=${
-                        row.original["_id"]
-                      }`}
-                    >
-                      {t("Edit", "common")}
-                      <EditIcon className="inline-block w-4 h-4" />
-                    </Link>
-                  </Button> */}
                   {
                     typeof customColumn === "function" &&
                       customColumn(typeof row.original["_id"] === "string" ?

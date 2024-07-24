@@ -3,7 +3,7 @@ import Button from "#/components/common/Button";
 import { StringInputFieldTemplate } from "#/components/form/input/StringInputFieldTemplate";
 
 import { templateHTML } from "#/components/form/templateHTML";
-import { queryProductById, updateProducts } from "#/lib/api/gql/product";
+import { findProductById, updateProducts } from "#/lib/api/gql/product";
 
 import { useTranslation } from "#/lib/i18n";
 import { normalSchemaJson } from "#/lib/schema";
@@ -17,7 +17,7 @@ export default async function ProductEditPage({ params: {lng}, searchParams}: Ba
   const schemaObj = normalSchemaJson["Product"]
   const { id } = searchParams  
   const { t } = await useTranslation(lng)
-  const { product } = await queryProductById({
+  const { product } = await findProductById({
     _id: id as string
   })
   console.log(product)

@@ -13,6 +13,18 @@ export type EnterpriseSchema = {
   registerPlace: string
   tradeMark?: string
 }
+
+/**
+ * @description Type for Enterprise data insert
+ */
+export type EnterpriseGqlInsert = EnterpriseSchema
+
+export type EnterpriseGqlResult = Partial<
+  Record<keyof EnterpriseSchema, unknown>
+> & {
+  _id: string
+}
+
 export const enterpriseSchemaObject: NormalSchemaObject<keyof EnterpriseSchema> = {
   name: "Enterprise",
   properties: {

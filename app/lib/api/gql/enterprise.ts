@@ -2,7 +2,7 @@ import { gql } from "@apollo/client"
 import { getCookieByName } from "#/components/util/cookie"
 import { BSON } from "realm-web"
 import { createClient } from "#/lib/api/apolloClient"
-import { SchemaResultMapper } from "#/types/schema"
+import { EnterpriseGqlResult, EnterpriseSchema } from "#/lib/schema/def/enterprise"
 
 export const QUERY_ENTERPRISES = gql`
   query getAllEnterprises($query: EnterpriseQueryInput) {
@@ -18,9 +18,10 @@ export const QUERY_ENTERPRISES = gql`
   }
 `
 
-export async function queryEnterprises(
-  query?: Partial<Record<keyof SchemaResultMapper["Enterprise"], unknown>>,
-) {
+export async function findEnterprises(
+  query?: Partial<Record<keyof EnterpriseSchema, unknown>>,
+): Promise<EnterpriseGqlResult[]> 
+{
   "use server"
   try {
     const client = createClient(getCookieByName("accessToken")!)
@@ -66,8 +67,8 @@ export async function updateEnterprise({
   query,
   set,
 }: {
-  query: Partial<SchemaResultMapper["Enterprise"]>
-  set: Partial<SchemaResultMapper["Product"]>
+  query: Partial<EnterpriseSchema>
+  set: Partial<EnterpriseSchema>
 }) {
   try {
     const client = createClient(getCookieByName("accessToken")!)

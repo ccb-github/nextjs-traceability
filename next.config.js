@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-   
   },
   typescript: {
     //TODO this is enabled for quick deployment

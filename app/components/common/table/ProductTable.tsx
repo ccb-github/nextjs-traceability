@@ -1,5 +1,4 @@
 "use client"
-import { normalSchemaJson } from "#/lib/schema"
 import React, { useRef } from "react"
 import { FaReacteurope } from "react-icons/fa"
 
@@ -13,7 +12,7 @@ import SchemaDataReactTable from "../SchemaDataReactTable"
 import { useApp } from "#/hooks/useApp"
 import { useRouter } from "next/navigation"
 import { type GeneralDataTableWrapperProps } from "#/types/table"
-import productSchemaJson, { ProductSchema } from "#/lib/schema/def/product"
+import productSchemaObject, { ProductSchema } from "#/lib/schema/def/product"
 import { roleUrlMap } from "#/lib/webcontents/user"
 
 type ProductReactTableProps = GeneralDataTableWrapperProps<
@@ -32,24 +31,25 @@ export default function ProductTable({ data, lng }: ProductReactTableProps) {
   //   ColumnResizeMode["onChange"],
   // )
   const { t } = useTranslation(lng, "product")
-  const schemaPropertiesRef = useRef(productSchemaJson.properties)
+  const schemaPropertiesRef = useRef(productSchemaObject.properties)
   const realmApp = useApp()
   const router = useRouter()
   const editLink = `/${lng}/${
-      roleUrlMap[Object.keys(roleUrlMap).some((v) => v === realmApp.currentUser?.customData.role) ?
-      realmApp.currentUser?.customData.role : "share"]
-    }/edit/product`
+    Object.keys(roleUrlMap).some((v) => v === realmApp.currentUser?.customData.role) ?
+      realmApp.currentUser?.customData.role : "share"
+  }/edit/product`
 
   return (
     <SchemaDataReactTable<
-      Partial<Record<keyof ProductSchema, string>> & {
-        _id: string
-      }
-    >
+        Partial<Record<keyof ProductSchema, string>> & {
+          _id: string
+        }
+      >
+      className={"flex flex-column"}
       lng={lng}
       data={data}
       schemaType={"Product"}
-      columnOptions={Object.values(normalSchemaJson["Product"].properties).map(
+      columnOptions={Object.values(productSchemaObject.properties).map(
         (prop) => ({
           accessor: prop.mapTo as keyof ProductSchema,
           header: t(prop.mapTo),

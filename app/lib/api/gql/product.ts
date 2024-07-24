@@ -5,8 +5,8 @@ import { createClient } from "../apolloClient"
 import { BSON } from "realm-web"
 import { ProductSchema } from "#/lib/schema/def/product"
 
-const QUERY_PRODUCTS = gql`
-  query queryProducts($query: ProductQueryInput) {
+const FIND_PRODUCTS = gql`
+  query findProducts($query: ProductQueryInput) {
     products(query: $query) {
       _id
       name
@@ -17,7 +17,20 @@ const QUERY_PRODUCTS = gql`
     }
   }
 `
-export async function queryProducts() {
+
+/**
+ * @description Type for Product data insert
+ */
+export type ProductGqlInsert = ProductSchema
+
+export type ProductGqlResult = Partial<
+  Record<keyof ProductSchema, string>
+> & {
+  _id: string
+}
+
+
+export async function findProducts() {
   try {
     const client = createClient(getCookieByName("accessToken")!)
     console.log(
@@ -28,7 +41,7 @@ export async function queryProducts() {
     const {
       data: { products },
     } = await client.query({
-      query: QUERY_PRODUCTS,
+      query: FIND_PRODUCTS,
     })
     console.log("Product length", products.length)
     return products
@@ -84,8 +97,8 @@ export async function updateProducts({
   }
 }
 
-const QUERY_PRODUCT_BY_ID = gql`
-  query queryProductById($id: ObjectId!) {
+const FIND_PRODUCT_BY_ID = gql`
+  query findProductById($id: ObjectId!) {
     product(query: {
       _id: $id
     }) {
@@ -99,15 +112,15 @@ const QUERY_PRODUCT_BY_ID = gql`
     }
   }
 `
-export async function queryProductById({
+export async function findProductById({
   _id,
 }: {
   _id: string
-}): Promise<{ product: Partial<ProductSchema> }> {
+}): Promise<{ product: Partial<Prouct> }> {
   try {
     const client = createClient(getCookieByName("accessToken")!)
     const { data } = await client.query({
-      query: QUERY_PRODUCT_BY_ID,
+      query: FIND_PRODUCT_BY_ID,
       variables: {
         id: new BSON.ObjectId(_id),
       },

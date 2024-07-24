@@ -3,6 +3,7 @@ import { NormalSchemaObject } from "#/lib/schema/format"
 import { EnterpriseSchema } from "#/lib/schema/def/enterprise"
 
 export type ProductStatus = "Selling" | "Sold" | "Ordering"
+
 export type ProductSchema = {
   _id: BSON.ObjectID
   assemblePlace?: string
@@ -16,7 +17,19 @@ export type ProductSchema = {
   standard: string
   status: ProductStatus
 }
-export const productSchemaJson: NormalSchemaObject<keyof ProductSchema> = {
+
+/**
+ * @description Type for Product data insert
+ */
+export type ProductGqlInsert = ProductSchema
+
+export type ProductGqlResult = Partial<
+  Record<keyof ProductSchema, unknown>
+> & {
+  _id: string
+}
+
+export const productSchemaObject: NormalSchemaObject<keyof ProductSchema> = {
   name: "Product",
   properties: {
     _id: {
@@ -105,6 +118,6 @@ export const productSchemaJson: NormalSchemaObject<keyof ProductSchema> = {
   },
   primaryKey: "_id",
   embedded: false,
-}
+} as const
 
-export default productSchemaJson
+export default productSchemaObject

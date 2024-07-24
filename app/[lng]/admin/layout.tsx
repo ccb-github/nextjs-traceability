@@ -89,16 +89,20 @@ export default async function AdminRootLayout({
 
         <div
           id="app-root-container"
-          className="flex-grow rounded-lg p-2 shadow-lg shadow-black/20 overflow-y-scroll"
+          className="flex-grow flex max-h-72 rounded-lg p-2 shadow-lg shadow-black/20"
         >
           {modal}
           {children}
         </div>
       </div>
       <Script id={"toggle-button"} strategy={"lazyOnload"}>
-        {`document.querySelector('#sidebar-toggle').onclick =  (event) => {
-           document.querySelector('#side-nav-container').classList.toggle("sidebar-open")}
-          `}
+        {
+          `
+           document.querySelector('#sidebar-toggle').onclick =  (event) => {
+             document.querySelector('#side-nav-container').classList.toggle("sidebar-open")
+           }
+          `
+        }
       </Script>
     </>
   )

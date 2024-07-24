@@ -1,10 +1,10 @@
 import Button from "#/components/common/Button"
 
 import { templateHTML } from "#/components/form/templateHTML"
-import { queryProductById, updateProducts } from "#/lib/api/gql/product"
+import { findProductById, updateProducts } from "#/lib/api/gql/product"
 import { useTranslation } from "#/lib/i18n"
-import { normalSchemaJson } from "#/lib/schema"
-import productSchemaJson from "#/lib/schema/def/product"
+
+import productSchemaObject from "#/lib/schema/def/product"
 import { BasePageProps } from "#/types/pageProp"
 
 import Script from "next/script"
@@ -17,7 +17,7 @@ export default async function ProductEditPage({
   console.log("This Product editpage ([@modal/.edit/) is rendered")
   const { id } = searchParams
   const { t } = await useTranslation(lng)
-  const { product } = await queryProductById({
+  const { product } = await findProductById({
     _id: id as string,
   })
   console.log(product)
@@ -54,7 +54,7 @@ export default async function ProductEditPage({
             h-full overflow-y-scroll pt-2 px-2
           `}
         >
-          {Object.values(productSchemaJson.properties).map((prop) =>
+          {Object.values(productSchemaObject.properties).map((prop) =>
             templateHTML({
               ...prop,
               defaultValue: product[prop.mapTo],

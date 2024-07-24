@@ -19,6 +19,21 @@ export type StockSchema = {
   },
 }
 
+/**
+ * @description Type for Stock data insert
+ */
+export type StockGqlInsert = StockSchema
+
+/**
+ * @description Type for Stock data result
+ */
+export type StockGqlResult = Partial<
+  Record<keyof StockSchema, unknown>
+> & {
+  _id: string
+}
+
+
 const stockSchemaObject: NormalSchemaObject<keyof StockSchema> = {
   name: "Stock",
   properties: {

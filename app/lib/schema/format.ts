@@ -1,6 +1,6 @@
 export type RoleType = "select" | "normal"
-// TODO keep two field exclusive
 
+// TODO keep two field exclusive
 export type SchemaDataPropType =
   | "double"
   | "int"
@@ -25,7 +25,7 @@ export enum URL_TO_SCHEMANAME {
   "product" = "Product",
   "enterprise" = "Enterprise",
   "order" = "Order",
-  "checker"  = "Checker",
+  "checker" = "Checker",
   "regulatory" = "Regulatory",
   "category" = "Category",
   "checkRecord" = "CheckRecord",
@@ -46,7 +46,7 @@ export type NormalSchemaName =
 export type SchemaName = EmbeddedSchemaName | NormalSchemaName
 
 // TODO with different shape
-export interface SchemaProperty<DefaultValue = string, PropKey = string> {
+export interface SchemaProperty<DefaultValue = string, SchemaPropKey = string> {
   defaultValue?: DefaultValue
   min?: number
   name: string
@@ -58,7 +58,7 @@ export interface SchemaProperty<DefaultValue = string, PropKey = string> {
    */
   relationSchemaName?: NormalSchemaName
   indexed: boolean
-  mapTo: string
+  mapTo: SchemaPropKey
   objectType?: SchemaName
 }
 export interface EmbedSchemaObject<SchemaPropKey extends string> {
@@ -66,10 +66,10 @@ export interface EmbedSchemaObject<SchemaPropKey extends string> {
   embedded: true
   properties: {
     [PropKey in SchemaPropKey]: SchemaProperty
-  } 
+  }
 }
-export interface NormalSchemaObject<SchemaPropKey extends string = "_id"> {
-  name: SchemaName
+export type NormalSchemaObject<SchemaPropKey extends string = "_id"> = {
+  name: NormalSchemaName
   primaryKey: string
   embedded: false
   properties: {

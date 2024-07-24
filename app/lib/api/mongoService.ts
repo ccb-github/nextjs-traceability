@@ -1,5 +1,6 @@
 import { NormalSchemaName, NormalSchemaObject, SchemaName } from "#/lib/schema/format";
-import { normalSchemaMap } from "../schema";
+import { normalSchemaMap } from "#/lib/api/schema";
+
 
 if(process.env.NEXT_PUBLIC_MONGODB_ATLA_DATABASE === undefined) {
   console.log(process.env)
@@ -25,7 +26,7 @@ export async function getUsers(realmUser: Realm.User, filter?: Realm.Services.Mo
 
 
 
-export async function getData(realmUser: Realm.User, schemaName: SchemaName,filter?: Realm.Services.MongoDB.Filter): Promise<any | null> {
+export async function getData(realmUser: Realm.User, schemaName: NormalSchemaName,filter?: Realm.Services.MongoDB.Filter): Promise<any | null> {
   const collection = realmUser
     .mongoClient('mongodb-atlas')
     .db(DB_NAME!)

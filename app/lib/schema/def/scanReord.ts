@@ -1,6 +1,9 @@
 import { BSON } from "realm-web"
 import { QrcodeSchemaEmbed } from "./embbed"
 
+/**
+ * @deprecated
+ */
 export type ScanRecordSchema = {
   _id: BSON.ObjectID
   code?: QrcodeSchemaEmbed
@@ -12,3 +15,4 @@ export type ScanRecordSchema = {
   ownerId: string
   url: string
 }
+

@@ -1,11 +1,26 @@
 import { NormalSchemaObject } from "#/lib/schema/format"
 import { BSON } from "realm-web"
+
 export type RegulatorySchema = {
   _id: BSON.ObjectID
   name: string
   address: string
   description: string
   ownerId: string
+}
+
+/**
+ * @description Type for Regulatory data insert
+ */
+export type RegulatoryGqlInsert = RegulatorySchema
+
+/**
+ * @description Type for Regulatory data result
+ */
+export type RegulatoryGqlResult = Partial<
+  Record<keyof RegulatorySchema, unknown>
+> & {
+  _id: string
 }
 
 export const regulatorySchemaObject: NormalSchemaObject<keyof RegulatorySchema> = {

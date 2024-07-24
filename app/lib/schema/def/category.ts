@@ -1,10 +1,10 @@
 import { BSON } from "realm-web"
 import { NormalSchemaObject } from "#/lib/schema/format"
-import MongodbList from "#/components/common/MongodbList"
 
 /**
- * @description The data model of category collection 
- * category stands for the category of the product
+ * @description The data model of category collection
+ * category stands for the category of the 
+ * {@link import("./product.ts")}
  */
 export type CategorySchema = {
   _id: BSON.ObjectID
@@ -12,25 +12,23 @@ export type CategorySchema = {
   name: string
   createdAt: Date
 }
+
 export type CategoryGqlQuery = Partial<
   Record<keyof CategorySchema, unknown>
-> & {
-  _id: string
-}
+> 
 
 export type CategoryGqlInsert = CategorySchema
 
 export type CategoryGqlResult = Partial<
-  Record<keyof CategorySchema, unknown>
+  Record<keyof CategorySchema, string>
 > & {
   _id: string
 }
 /**
- * @param {CategorySchema} Derive from categorySchema 
+ * @type {NormalSchemaObject} Template  Instanize with {@link CategorySchema}
  */
 const categorySchemaObject: NormalSchemaObject<keyof CategorySchema> = {
   name: "Category",
-  // dataType: "selectList",
   properties: {
     _id: {
       name: "_id",
