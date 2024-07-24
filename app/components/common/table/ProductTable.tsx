@@ -35,16 +35,18 @@ export default function ProductTable({ data, lng }: ProductReactTableProps) {
   const schemaPropertiesRef = useRef(productSchemaObject.properties)
   const realmApp = useApp()
   const router = useRouter()
-  const editLink = `/${lng}/${Object.keys(roleUrlMap).some((v) => v === realmApp.currentUser?.customData.role) ?
+  const editLink = `/${lng}/${
+    Object.keys(roleUrlMap).some((v) => v === realmApp.currentUser?.customData.role) ?
       realmApp.currentUser?.customData.role : "share"
-    }/edit/product`
+  }/edit/product`
 
   return (
     <SchemaDataReactTable<
-      Partial<Record<keyof ProductSchema, string>> & {
-        _id: string
-      }
-    >
+        Partial<Record<keyof ProductSchema, string>> & {
+          _id: string
+        }
+      >
+      className={"flex flex-column"}
       lng={lng}
       data={data}
       schemaType={"Product"}

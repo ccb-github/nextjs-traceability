@@ -69,7 +69,7 @@ export async function updateOneEnterprise({
   set,
 }: {
   query: Partial<EnterpriseSchema>
-  set: Partial<ProductSchema>
+  set: Partial<EnterpriseSchema>
 }) {
   try {
     const client = createClient(getCookieByName("accessToken")!)

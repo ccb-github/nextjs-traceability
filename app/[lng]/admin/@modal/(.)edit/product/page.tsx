@@ -1,14 +1,10 @@
 import Button from "#/components/common/Button"
 import { templateHTML } from "#/components/form/templateHTML"
-import { queryProductById, updateProducts } from "#/lib/api/gql/product"
+import { findProductById, updateProducts } from "#/lib/api/gql/product"
 
 import { useTranslation } from "#/lib/i18n"
-<<<<<<< HEAD
-import { SchemaTypeMapper, normalSchemaMap } from "#/lib/schema"
-=======
-import { SchemaTypeMapper, normalSchemaJson } from "#/lib/schema"
->>>>>>> fd8d35f3a9f656513095d6af13bcf3b01b67657a
-import { ProductSchema } from "#/lib/schema/def/product"
+import { normalSchemaMap } from "#/lib/schema"
+import productSchemaObject, { ProductSchema } from "#/lib/schema/def/product"
 import { BasePageProps } from "#/types/pageProp"
 import Script from "next/script"
 import { BSON } from "realm-web"
@@ -18,14 +14,9 @@ export default async function ProductEditPage({
   searchParams,
 }: BasePageProps) {
   console.log("This Product editpage ([admin/@modal/.edit/product) is rendered")
-<<<<<<< HEAD
-  const schemaObj = normalSchemaMap["Product"]
-=======
-  const schemaObj = normalSchemaJson["Product"]
->>>>>>> fd8d35f3a9f656513095d6af13bcf3b01b67657a
   const { id } = searchParams
   const { t } = await useTranslation(lng)
-  const { product } = await queryProductById({
+  const { product } = await findProductById({
     _id: id as string,
   })
   console.log(product)
@@ -68,12 +59,11 @@ export default async function ProductEditPage({
           `}
         >
           {(
-            Object.keys(schemaObj.properties) as Array<keyof ProductSchema>
-          ).map((e) =>
+            Object.entries(productSchemaObject.properties) 
+          ).map(([productPropteryKey, productPropteryValue]) =>
             templateHTML({
-              //@ts-ignore
-              ...schemaObj.properties[e],
-              defaultValue: product[e as keyof ProductSchema],
+              ...productPropteryValue,
+              defaultValue: product[productPropteryKey as keyof ProductSchema],
             }),
           )}
 
