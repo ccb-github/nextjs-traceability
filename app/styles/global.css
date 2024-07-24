@@ -93,6 +93,11 @@ thead th {
   vertical-align: bottom;
 }
 
+/* Zebra stripping*/
+tbody tr:nth-child(odd) {
+  background: #eee;
+}
+
 /* Table stick style disabled
 th:last-child,
 td:last-child {

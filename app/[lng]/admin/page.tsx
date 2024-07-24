@@ -13,10 +13,9 @@ export default async function AdminHomePage({
 }) {
   const { lng } = params
   const { t } = await useTranslation(lng, "admin")
-  console.log(process.env)
+  
   return (
-    <>
-      {adminMainPanels.map((section) => (
+    adminMainPanels.map((section) => (
         <div key={section.name} className="space-y-5">
           <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
           
@@ -30,11 +29,7 @@ export default async function AdminHomePage({
             ))}
           </div>
         </div>
-      ))}
-      {/* <section>
-        
-        <QRCodeImg src="https://cn.bing.com"/>
-      </section> */}
-    </>
+      ))
+    
   )
 }

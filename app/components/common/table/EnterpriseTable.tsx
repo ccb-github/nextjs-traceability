@@ -48,7 +48,6 @@ export default function EnterpriseTable({
       lng={lng}
       data={data}
       schemaType={"Enterprise"}
-      className={"flex flex-column"}
       deleteEnabled={true}
       columnOptions={
         Object.values(enterpriseSchemaObject.properties).map(

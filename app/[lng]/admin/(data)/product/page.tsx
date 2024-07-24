@@ -10,7 +10,7 @@ export default async function AdminProductManagePage({
   const products = await findProducts()
 
   return (
-    <div id="data-table" className="h-full w-full">
+    <div id="data-table" className="w-full">
       <ProductTable data={products} lng={lng} />
     </div>
   )

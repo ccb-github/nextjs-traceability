@@ -46,7 +46,6 @@ export default function ProductTable({ data, lng }: ProductReactTableProps) {
           _id: string
         }
       >
-      className={"flex flex-column"}
       lng={lng}
       data={data}
       schemaType={"Product"}

@@ -1,4 +1,5 @@
 import ApolloCookieWrapper from "#/components/ApolloCookieWrapper"
+import { languages } from "#/lib/i18n/settings"
 import "#/styles/global.css"
 import { Inter } from "next/font/google"
 

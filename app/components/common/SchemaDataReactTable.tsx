@@ -5,7 +5,7 @@ import Button from "./Button"
 import SearchBar from "./SearchBar"
 import { useTranslation } from "#/lib/i18n/client"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { CustomRender } from "#/lib/reactTable/render"
 import {
   Column,
@@ -96,6 +96,7 @@ export default function SchemaDataReactTable<DataItem extends { _id: unknown}>({
     () => normalSchemaMap[schemaType].properties,
     [schemaType],
   )
+  const router = useRouter()
   const currentPath = usePathname()
 
   /**

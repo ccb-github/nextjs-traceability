@@ -51,7 +51,7 @@ export default async function AdminRootLayout({
             </h3>
           </Link>
         </div>
-        <SideBarToggleButton />
+        <SideBarToggleButton/>
 
         <div
           id="side-nav-container"
@@ -89,7 +89,7 @@ export default async function AdminRootLayout({
 
         <div
           id="app-root-container"
-          className="flex-grow flex max-h-72 rounded-lg p-2 shadow-lg shadow-black/20"
+          className="flex-grow flex rounded-lg p-2 shadow-lg shadow-black/20"
         >
           {modal}
           {children}

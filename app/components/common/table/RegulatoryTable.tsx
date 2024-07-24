@@ -1,4 +1,5 @@
 "use client"
+import { normalSchemaMap } from "#/lib/schema"
 import React, { useRef } from "react"
 import { FaReacteurope } from "react-icons/fa"
 import { useTranslation } from "#/lib/i18n/client"
@@ -28,7 +29,7 @@ export default function RegulatoryTable({
   lng,
 }: RegulatoryReactTableProps) {
   const { t } = useTranslation(lng, "regulatory")
-  const schemaPropertiesRef = useRef(regulatorySchemaObject.properties)
+  const schemaPropertiesRef = useRef(normalSchemaMap["Regulatory"].properties)
   const realmApp = useApp()
   const router = useRouter()
   const editLink = `/${lng}/${
