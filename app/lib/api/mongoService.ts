@@ -1,12 +1,12 @@
+
 import { NormalSchemaName, NormalSchemaObject, SchemaName } from "#/lib/schema/format";
-import { normalSchemaMap } from "#/lib/api/schema";
+import { normalSchemaMap } from "../schema";
 
-
-if(process.env.NEXT_PUBLIC_MONGODB_ATLA_DATABASE === undefined) {
+if(process.env.NEXT_PUBLIC_MONGODB_ATLAS_DATABASE === undefined) {
   console.log(process.env)
   throw Error("Missing env varaiable MONGODB_ATLA_DATABASE")
 }
-const DB_NAME = process.env.NEXT_PUBLIC_MONGODB_ATLA_DATABASE
+const DB_NAME = process.env.NEXT_PUBLIC_MONGODB_ATLAS_DATABASE
 
 
 export async function getUsers(realmUser: Realm.User, filter?: Realm.Services.MongoDB.Filter): Promise<any | null> {

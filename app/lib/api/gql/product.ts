@@ -3,7 +3,7 @@ import { getCookieByName } from "#/components/util/cookie"
 import { ApolloError, gql } from "@apollo/client"
 import { createClient } from "../apolloClient"
 import { BSON } from "realm-web"
-import { ProductSchema } from "#/lib/schema/def/product"
+import { ProductGqlResult, ProductSchema } from "#/lib/schema/def/product"
 
 const FIND_PRODUCTS = gql`
   query findProducts($query: ProductQueryInput) {
@@ -17,20 +17,7 @@ const FIND_PRODUCTS = gql`
     }
   }
 `
-
-/**
- * @description Type for Product data insert
- */
-export type ProductGqlInsert = ProductSchema
-
-export type ProductGqlResult = Partial<
-  Record<keyof ProductSchema, string>
-> & {
-  _id: string
-}
-
-
-export async function findProducts() {
+export async function queryProducts() {
   try {
     const client = createClient(getCookieByName("accessToken")!)
     console.log(
@@ -116,7 +103,7 @@ export async function findProductById({
   _id,
 }: {
   _id: string
-}): Promise<{ product: Partial<Prouct> }> {
+}): Promise<{ product: Partial<ProductGqlResult> }> {
   try {
     const client = createClient(getCookieByName("accessToken")!)
     const { data } = await client.query({

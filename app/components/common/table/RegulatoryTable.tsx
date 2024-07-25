@@ -1,5 +1,4 @@
 "use client"
-import { normalSchemaMap } from "#/lib/schema"
 import React, { useRef } from "react"
 import { FaReacteurope } from "react-icons/fa"
 import { useTranslation } from "#/lib/i18n/client"

@@ -1,7 +1,6 @@
 "use client"
 import React, { useRef } from "react"
 import { FaReacteurope } from "react-icons/fa"
-
 import { useTranslation } from "#/lib/i18n/client"
 import Link from "next/link"
 import { EditIcon } from "#/components/icons"
@@ -14,6 +13,7 @@ import { useRouter } from "next/navigation"
 import { type GeneralDataTableWrapperProps } from "#/types/table"
 import productSchemaObject, { ProductSchema } from "#/lib/schema/def/product"
 import { roleUrlMap } from "#/lib/webcontents/user"
+import { UserRole } from "#/types/data"
 
 type ProductReactTableProps = GeneralDataTableWrapperProps<
   Partial<Record<keyof ProductSchema, string>> & {
@@ -31,12 +31,13 @@ export default function ProductTable({ data, lng }: ProductReactTableProps) {
   //   ColumnResizeMode["onChange"],
   // )
   const { t } = useTranslation(lng, "product")
-  const schemaPropertiesRef = useRef(productSchemaObject.properties)
+
   const realmApp = useApp()
   const router = useRouter()
   const editLink = `/${lng}/${
-    Object.keys(roleUrlMap).some((v) => v === realmApp.currentUser?.customData.role) ?
-      realmApp.currentUser?.customData.role : "share"
+    Object.keys(roleUrlMap).some((v) => v === realmApp.currentUser?.customData.role)?  
+      roleUrlMap[realmApp.currentUser?.customData.role as UserRole] : 
+      "share"
   }/edit/product`
 
   return (
@@ -68,7 +69,7 @@ export default function ProductTable({ data, lng }: ProductReactTableProps) {
                 deleteDocuments(realmApp.currentUser!, "Product", {
                   _id: fieldConvert(
                     self.dataset.id!,
-                    schemaPropertiesRef.current["_id"].dataType,
+                    productSchemaObject.properties["_id"].dataType,
                   ),
                 })
                   .then(() => {

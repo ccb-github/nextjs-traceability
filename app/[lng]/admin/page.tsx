@@ -23,7 +23,8 @@ export default async function AdminHomePage({
             {section.items.map((item: NavItem) => (
               <MainPanelNavItem
                 name={t(`${item.name}`, { ns: "mainpanel" })} 
-                link={item.link ?? "#"} 
+                link={`/${lng}/admin/${item.link}`}
+                key={item.name}
                 description={item.description} 
               />
             ))}

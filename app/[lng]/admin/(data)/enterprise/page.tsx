@@ -1,6 +1,6 @@
 import SchemaDataReactTable from "#/components/common/SchemaDataReactTable"
 import { findEnterprises } from "#/lib/api/gql/enterprise"
-import enterpriseSchemaJson, { EnterpriseSchema } from "#/lib/schema/def/enterprise"
+import enterpriseSchemaJson, { EnterpriseGqlResult } from "#/lib/schema/def/enterprise"
 import { BasePageProps } from "#/types/pageProp"
 
 
@@ -15,13 +15,13 @@ export default async function AdminEnterpriseManagePage({
       id="data-table"
       className="h-full overflow-x-scroll"
     >
-      <SchemaDataReactTable<EnterpriseSchema>
+      <SchemaDataReactTable<EnterpriseGqlResult>
         lng={lng}
         data={enterprises}
         columnOptions={
           Object.entries(enterpriseSchemaJson.properties).map(([key, value]) => ({
           
-            accessor: key as keyof EnterpriseSchema,
+            accessor: key as keyof EnterpriseGqlResult,
             accessorKey: key,
             header: key,
 

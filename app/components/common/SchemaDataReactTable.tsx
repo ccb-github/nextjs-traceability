@@ -1,12 +1,11 @@
 "use client"
 import React, { useMemo } from "react"
-
 import { FaReacteurope } from "react-icons/fa"
 import Button from "./Button"
 import SearchBar from "./SearchBar"
 import { useTranslation } from "#/lib/i18n/client"
 import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
 import { CustomRender } from "#/lib/reactTable/render"
 import {
   Column,
@@ -16,12 +15,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
-import { NormalSchemaName, SchemaDataPropType, URL_TO_SCHEMANAME } from "#/lib/schema/format"
-import { roleUrlMap } from "#/lib/webcontents/user"
-import { useApp } from "#/hooks/useApp"
-import { deleteDocuments } from "#/lib/api/mongoService"
-import fieldConvert from "#/lib/fieldConvert"
-import EditIcon from "../icons/edit"
+import { NormalSchemaName, SchemaDataPropType } from "#/lib/schema/format"
 import { normalSchemaMap } from "#/lib/schema"
 
 /**
@@ -102,9 +96,8 @@ export default function SchemaDataReactTable<DataItem extends { _id: unknown}>({
     () => normalSchemaMap[schemaType].properties,
     [schemaType],
   )
-  const router = useRouter()
   const currentPath = usePathname()
-  const realmApp = useApp()
+
   /**
    * The column definition array with shape
    *

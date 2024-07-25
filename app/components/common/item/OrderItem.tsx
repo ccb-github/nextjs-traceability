@@ -3,13 +3,9 @@ import Link from "next/link"
 import BlurImage from "#/components/common/BlurImage"
 import { UUID } from "crypto"
 import { usePathname } from "next/navigation"
+import { OrderSchema } from "#/lib/schema/def/order"
 
-export default function OrderItem({lng, order}: {lng: string, order: {
-  _id: UUID,
-  name: string,
-  catgory: string,
-  orderTime: Date
-}}){
+export default function OrderItem({lng, order}: {lng: string, order: OrderSchema}){
     const {t} = useTranslation(lng)
     const path = usePathname()
     return (

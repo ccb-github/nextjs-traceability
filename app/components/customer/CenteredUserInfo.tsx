@@ -23,7 +23,7 @@ export default function CenterUserInfo({ lng }: { lng: string }) {
       }
     else return null
   }, [realmApp.currentUser])
-  const { email, role, name, belong } = userProfile as UserProfile
+  const { email, role, name } = userProfile as UserProfile
   const { t } = useTranslation(lng)
 
   //A grid box with 3column if device is above middle size
@@ -59,12 +59,12 @@ export default function CenterUserInfo({ lng }: { lng: string }) {
             <span className="font-bold mr-2">{t("Role") + ":"}</span>
             {role}
           </div>
-          {belong && (
+          {/* {belong && (
             <div className="flex h-14 items-center py-4 px-4 lg:h-auto">
               <span className="font-bold mr-2">{t("Belong") + ":"}</span>
               {belong}
             </div>
-          )}
+          )} */}
           <hr />
           {/* <div className="flex h-14 items-center py-4 px-4 lg:h-auto">
             <label>Allowed catgory</label>

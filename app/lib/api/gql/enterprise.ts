@@ -19,7 +19,7 @@ export const QUERY_ENTERPRISES = gql`
 `
 
 export async function findEnterprises(
-  query?: Partial<Record<keyof EnterpriseSchema, unknown>>,
+  query?: Partial<EnterpriseSchema>,
 ): Promise<EnterpriseGqlResult[]> 
 {
   "use server"
